@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Scopes\AuthorScope;
+use App\Scopes\DeletedScope;
 
 class ArticleController extends Controller
 {
     //
 
     public function index(Request $request){
+
+
+        $list = Article::withoutGlobalScopes([
+            DeletedScope::class, AuthorScope::class
+        ])->get();
+        print_r($list);
+
 
         $forceDeleteRow = Article::where('id', 5)->first();
         if($forceDeleteRow) {

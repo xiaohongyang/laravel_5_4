@@ -14,11 +14,6 @@ class ArticleController extends Controller
     public function index(Request $request){
 
 
-        $list = Article::withoutGlobalScopes([
-            DeletedScope::class, AuthorScope::class
-        ])->get();
-        print_r($list);
-
 
         $forceDeleteRow = Article::where('id', 5)->first();
         if($forceDeleteRow) {
@@ -56,7 +51,7 @@ class ArticleController extends Controller
         $articleList = Article::where('id','>', '0')->withTrashed()->get();
 
         $articleList->reject(function($article){
-            echo " $article->id  $article->title ".($article->trashed() ? '已删除' : '未删除')."<br/>";
+            echo " $article->id  $article->title ".($article->trashed() ? '已删除' : '未删除'). " author: {$article->author}" ."<br/>";
         });
     }
 
@@ -65,8 +60,8 @@ class ArticleController extends Controller
 
         $rs = Article::create(['title'=>'test', 'author'=>'xhy']);
         var_dump($rs->author);
-        $rs->fill(['author'=> 'xjp','aa','title'=>'testvvv']);
-        $rs->save();
+//        $rs->fill(['author'=> 'xjp','aa','title'=>'testvvv']);
+//        $rs->save();
         var_dump($rs->author);
 
         exit;

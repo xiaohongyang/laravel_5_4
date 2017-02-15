@@ -12,15 +12,17 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\App;
- 
+use Illuminate\Support\Facades\Route;
 
- 
 
 //class IndexController extends BaseController
 class IndexController extends Controller
 {
     
 	public function index(){
+
+		$this->getCurrentActionName();
+		exit;
 
 		$articles = Article::all()->where('id', '>', 0)->take(3);
 
@@ -52,6 +54,37 @@ class IndexController extends Controller
 		}
 	}
 
+	/**
+	 * get current action method name
+	 * @author 258082291@qq.com
+	 * @return mixed
+	 */
+	protected function getCurrentActionName(){
+		$currentRoute = Route::getCurrentRoute()->getActionName();
+		list(, $action) = explode('@', $currentRoute);
+
+		return  $action;
+	}
+
+	/**
+	 * get current controller name
+	 * @return mixed
+	 */
+	protected function getCurrentControllerName(){
+		$currentRoute = Route::getCurrentRoute()->getActionName();
+		list($controller,) = explode('@', $currentRoute);
+		$controllerArr = explode('\\', $controller);
+		$controllerName = array_pop($controllerArr);
+		return  $controllerName;
+	}
+
+	/**
+	 * get current namespace
+	 */
+	protected function getCurrentNameSpace(){
+		$currentRoute = Route::getCurrentRoute()->action['namespace'];
+		echo $currentRoute;
+	}
 
     public function test(){
 

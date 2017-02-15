@@ -15,7 +15,7 @@
 //    return view('welcome');
 //});
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('index');
 
 Route::get('/index/test', 'IndexController@test');
 

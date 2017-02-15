@@ -17,7 +17,7 @@
 
 Route::get('/', 'IndexController@index')->name('index');
 
-Route::get('/index/test', 'IndexController@test');
+Route::get('/index/test', 'IndexController@test')->middleware('age');
 
 Route::get('/article/create', 'ArticleController@create');
 Route::get('/article/firstOrCreate', 'ArticleController@firstOrCreate');

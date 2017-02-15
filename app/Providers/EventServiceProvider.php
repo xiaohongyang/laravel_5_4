@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+        'App\Events\ArticleReleased' => [
+            'App\Listeners\SendArticleReleasedNotification'
+        ]
     ];
 
     /**
@@ -29,4 +32,8 @@ class EventServiceProvider extends ServiceProvider
 
         //
     }
+
+    protected $subscribe = [
+        'App\Handlers\Events\ArticleEventHandler'
+    ];
 }

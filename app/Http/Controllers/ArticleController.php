@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ArticleReleased;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Scopes\AuthorScope;
 use App\Scopes\DeletedScope;
+use Illuminate\Support\Facades\Event;
 
 class ArticleController extends Controller
 {
@@ -59,6 +61,9 @@ class ArticleController extends Controller
         //print_r($request);
 
         $rs = Article::create(['title'=>'test', 'author'=>'xhy']);
+
+        event(new ArticleReleased($rs));
+        exit;
         var_dump($rs->author);
 //        $rs->fill(['author'=> 'xjp','aa','title'=>'testvvv']);
 //        $rs->save();

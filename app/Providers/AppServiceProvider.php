@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
             'show' => 'myshow',
             'edit' => 'myedit'
         ]);*/
+
+        //share data with all views;
+        //View::share('currentDate', date('Y-m-d'));
+        View::share('currentDate', Carbon::now());
     }
 
     /**

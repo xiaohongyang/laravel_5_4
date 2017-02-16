@@ -39,11 +39,13 @@ Route::group([
     Route::resource('photos', 'PhotoController', ['parameters' => ['photos'=> 'admin_user']]);
 });
 
-
-
 // Route::get('/test', 'IndexController@test');
 // Route::get('/test/', 'IndexController@test');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/blade', function() {
+    return view('blade');
+});

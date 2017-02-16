@@ -5,5 +5,7 @@
         {{ $name }}
 
         {{ $currentDate }}
+        <br/>
+        Article's count: {{ $count }}
     </body>
 </html>

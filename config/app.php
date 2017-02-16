@@ -182,6 +182,9 @@ return [
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+
+        App\Providers\ComposerServiceProvider::class,
+
     ],
 
     /*

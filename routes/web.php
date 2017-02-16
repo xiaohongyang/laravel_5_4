@@ -43,3 +43,7 @@ Route::group([
 
 // Route::get('/test', 'IndexController@test');
 // Route::get('/test/', 'IndexController@test');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

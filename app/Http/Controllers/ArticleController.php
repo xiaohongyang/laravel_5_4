@@ -108,6 +108,8 @@ class ArticleController extends Controller
             return $input->author=='jack';
         });
 
+        $validate->addRules( ['title'=> 'CustomerStrLess3']);
+
 
 
 

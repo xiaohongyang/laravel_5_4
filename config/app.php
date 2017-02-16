@@ -184,7 +184,7 @@ return [
 
 
         App\Providers\ComposerServiceProvider::class,
-
+        App\Providers\ValidatorServiceProvider::class,
     ],
 
     /*

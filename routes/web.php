@@ -32,7 +32,6 @@ Route::group([
 ],  function(){
     Route::resource('photos', 'PhotoController', ['parameters' => ['photos'=> 'admin_user']]);
 });
-Route::get('/test/{id}','TestController');
 
 
 

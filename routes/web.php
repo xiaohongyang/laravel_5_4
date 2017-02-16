@@ -27,5 +27,14 @@ Route::get('/article/delete', 'ArticleController@delete');
 Route::get('/article/destroy', 'ArticleController@destroy');
 Route::get('/article/index', 'ArticleController@index');
 
+Route::group([
+    'prefix' => 'v1'
+],  function(){
+    Route::resource('photos', 'PhotoController', ['parameters' => ['photos'=> 'admin_user']]);
+});
+Route::get('/test/{id}','TestController');
+
+
+
 // Route::get('/test', 'IndexController@test');
 // Route::get('/test/', 'IndexController@test');

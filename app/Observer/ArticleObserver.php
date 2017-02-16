@@ -13,9 +13,8 @@ class ArticleObserver
 {
 
     public function created(Article $article) {
-        $article->author = 'observer';
-
-        $article->save();
+//        $article->author = 'observer';
+//        $article->save();
     }
 
     public function deleted(Article $article){

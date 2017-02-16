@@ -28,8 +28,6 @@ class Article extends Model
 //            $builder->where('author', '=', '肖红阳');
 //        });
 
-
-
     }
 
 
@@ -48,10 +46,6 @@ class Article extends Model
         $article = new Article;
         $article->title = $request->title;
         $article->author = $request->get('author', '');
-
-        //通过fill方法load数据
-        //$article->fill(['author'=> 'xjp','aa','title'=>'testvvv']);
-
         return $article->save();
     }
 
@@ -108,6 +102,9 @@ class Article extends Model
     }
 
     public function getList(){
-        return $this->all();
+        return $this->all()->sortByDesc('created_at');
     }
+
+
+
 }

@@ -13,48 +13,18 @@ class ArticleController extends Controller
 {
     //
 
+    private $article;
+
+    public function __construct(Article $article){
+        $this->article = $article;
+    }
+
     public function index(Request $request){
 
-
-
-        $forceDeleteRow = Article::where('id', 5)->first();
-        if($forceDeleteRow) {
-            var_dump($forceDeleteRow->doForceDelete());
-        }
-
-
-        $one = Article::where('id',7)->first();
-
-        if($one && !$one->trashed()) {
-
-            $one->delete();
-            print_r($one);
-            echo "<hr/>";
-            echo $one->trashed() ? '已删除' : '未删除';
-            echo '<hr/>';
-        }
-
-        $articleModel = new Article();
-
-//        $articleDeleted = Article::onlyTrashed()->first();
-//        $rs = $articleDeleted && count($articleDeleted) && $articleDeleted->unDelete();
-//        var_dump($rs);
-//        echo '<hr/>';
-
-
-        //
-        $onlyTrashedData = $articleModel->getOnlyTrashed();
-        $onlyTrashedData->reject(function($model){
-           print_r($model);
-           echo "<hr/>";
-        });
-
-        //
-        $articleList = Article::where('id','>', '0')->withTrashed()->get();
-
-        $articleList->reject(function($article){
-            echo " $article->id  $article->title ".($article->trashed() ? '已删除' : '未删除'). " author: {$article->author}" ."<br/>";
-        });
+        $articleList = $this->article->getList();
+        return view('article.index', [
+            'articleList' => $articleList
+        ])->with('name', 'JackXiao');
     }
 
     public function create(Request $request){

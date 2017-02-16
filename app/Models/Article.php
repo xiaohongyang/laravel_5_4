@@ -107,4 +107,7 @@ class Article extends Model
         return $this->forceDelete();
     }
 
+    public function getList(){
+        return $this->all();
+    }
 }

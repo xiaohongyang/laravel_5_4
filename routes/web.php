@@ -31,6 +31,8 @@ Route::get('/article/index', 'ArticleController@index');
 Route::get('/route', 'IndexController@route');
 Route::post('/route', 'IndexController@route');
 
+Route::resource('article', 'ArticleController');
+
 Route::group([
     'prefix' => 'v1'
 ],  function(){

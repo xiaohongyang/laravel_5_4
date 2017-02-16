@@ -27,6 +27,10 @@ Route::get('/article/delete', 'ArticleController@delete');
 Route::get('/article/destroy', 'ArticleController@destroy');
 Route::get('/article/index', 'ArticleController@index');
 
+
+Route::get('/route', 'IndexController@route');
+Route::post('/route', 'IndexController@route');
+
 Route::group([
     'prefix' => 'v1'
 ],  function(){

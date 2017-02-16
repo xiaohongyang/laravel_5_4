@@ -13,6 +13,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 
 //class IndexController extends BaseController
@@ -21,7 +22,9 @@ class IndexController extends Controller
     
 	public function index(){
 
+		return response("hello")->header('content-type','text/html');
 
+		return ['a'=>1,'age'=>2];
 
 		return view('index');
 
@@ -56,6 +59,25 @@ class IndexController extends Controller
 			print_r($article);
 			echo "<hr/>";
 		}
+	}
+
+	public function route(Request $request){
+
+		//if the incoming request is targeted at http://domain.com/foo/bar, the path method will return foo/bar:
+//		dump($request->path());
+//		dump($request->is('rout*'));
+//		dump($request->url());
+//		dump($request->fullUrl());
+//		//return the request method , like 'get'、'post' ...
+//		dump($request->method());
+//		dump($request->get('a'));
+//		dump($request->input('a'));
+//		dump($request->all());
+//		dump($request->input('ab','a'));
+//		dump($request->only('a','c'));
+//		dump($request->except('a'));
+//		dump($request->intersect(['a','b']));
+		return view('route');
 	}
 
 	/**

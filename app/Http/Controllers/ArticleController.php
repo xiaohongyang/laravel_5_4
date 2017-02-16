@@ -103,10 +103,10 @@ class ArticleController extends Controller
         });
 
         //当author的值为'jack'的时候，title必须为'xiao01'或者'xiao02'
-//        $validate->sometimes('title', Rule::in(['xiao01','xiao02']), function($input) {
-//
-//            return $input->author=='jack';
-//        });
+        $validate->sometimes('title', Rule::in(['xiao01','xiao02']), function($input) {
+
+            return $input->author=='jack';
+        });
 
 
 

@@ -22,14 +22,8 @@ class IndexController extends Controller
     
 	public function index(){
 
-		return response("hello")->header('content-type','text/html');
-
-		return ['a'=>1,'age'=>2];
-
+		\App::setLocale('zh');
 		return view('index');
-
-		$this->getCurrentActionName();
-		exit;
 
 		$articles = Article::all()->where('id', '>', 0)->take(3);
 

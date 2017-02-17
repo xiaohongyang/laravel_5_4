@@ -53,6 +53,11 @@
         @each('view.name', [1,2,3,4,5,6], 'item')
 
     @endcomponent
+
+
+
 @endsection
+
+
 
 

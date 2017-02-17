@@ -3,7 +3,9 @@ use Carbon\Carbon;use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 
 //info("some useful information!");
-
+echo __('messages.welcome', ['name'=>'JackXiao']); echo '<br/>';
+echo trans_choice('messages.apples',1); echo "<br/>";
+echo trans_choice('messages.apples02', 3);
 dump("abc");
 dump(Carbon::now());
 dump(Carbon::now()->addSeconds(10));

@@ -33,17 +33,8 @@ Article's count: {{ $count }}
 
 {{session('msg')}}
 <br/>
-@if(count($errors))
-    {{ dump($errors) }}
-    {{ dump($errors->all()) }}
-    <div class="alert alert-danger">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
+@include("shared.errors")
 
 <table>
     <tr>

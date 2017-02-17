@@ -27,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
         //share data with all views;
         //View::share('currentDate', date('Y-m-d'));
         View::share('currentDate', Carbon::now());
+
+        \Blade::directive('dtime', function($expression) {
+            return "<?php echo date('Y-m-d H:i', $expression); ?>";
+        });
     }
 
     /**

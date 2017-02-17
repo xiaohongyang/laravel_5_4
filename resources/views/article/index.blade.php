@@ -54,6 +54,7 @@ Article's count: {{ $count }}
 
             <td>
                 {{ $article->created_at }}
+                @dtime(time())
             </td>
         </tr>
     @endforeach

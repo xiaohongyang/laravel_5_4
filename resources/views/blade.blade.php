@@ -47,7 +47,10 @@
             {{$loop->index}}=>{{$item}} <br/>
             {{-- comment will not be present in the render HTML --}}
             <!-- comment will be present in render HTML -->
+
         @endforeach
+
+        @each('view.name', [1,2,3,4,5,6], 'item')
 
     @endcomponent
 @endsection

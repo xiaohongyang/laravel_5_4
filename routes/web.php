@@ -49,3 +49,5 @@ Route::get('/home', 'HomeController@index');
 Route::get('/blade', function() {
     return view('blade');
 });
+
+Route::get('/front/index', 'FrontController@index');

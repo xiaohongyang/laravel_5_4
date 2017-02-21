@@ -16,5 +16,17 @@ require('./bootstrap');
 Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data : {
+        message : 'hello, test Message!'
+    },
+
+    filters : {
+        capitalize : function(value) {
+            if(!value ) return '';
+
+            value = value.toString();
+            return value.charAt(0).toUpperCase() + value.slice(1);
+        }
+    }
 });

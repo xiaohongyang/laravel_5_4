@@ -50,4 +50,12 @@ Route::get('/blade', function() {
     return view('blade');
 });
 
+
+
+/*Route::group(['namespace' => 'Auth'], function(){
+    Route::any('auth/resetpassword/test', 'ResetPasswordController@test');
+});*/
+Route::any('auth/resetpassword/test', 'Auth\ResetPasswordController@test');
+
+
 Route::get('/front/index', 'FrontController@index');

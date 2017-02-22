@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\URL;
 
 @section('content')
 
+    {{Hash::make('123')}} <br/>
+    {{Hash::make('123') == Hash::make(123) ? '=' : '!='}} <br/>
+    {{Hash::check('123', '$2y$10$GFjcDwClit2XxfbMNxoINuJvDIPssNZ0MtPEJBBGQk7t6HEC5tXYC')}} <br/>
+    {{Hash::check('123', '$2y$10$xykSvVv.9PawV.HwoOo2luVPH1wEA1QcRNvkkNoBMAhz1WzmtFSua')}} <br/>
+
+
+
     <?php
     //info("some useful information!");
     echo __('messages.welcome', ['name'=>'JackXiao']); echo '<br/>';

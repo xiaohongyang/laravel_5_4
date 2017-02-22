@@ -1,7 +1,6 @@
-<html>
-<body>
-<h1>Hello</h1>
+@extends('layouts.app')
 
+@section('content')
 {{ $name }}
 
 {{ $currentDate }}
@@ -60,6 +59,4 @@ Article's count: {{ $count }}
     @endforeach
 </table>
 
-
-</body>
-</html>
+@endsection

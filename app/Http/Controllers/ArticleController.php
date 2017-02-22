@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Scopes\AuthorScope;
 use App\Scopes\DeletedScope;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -24,9 +25,17 @@ class ArticleController extends Controller
     public function index(Request $request){
 
         $articleList = $this->article->getList();
-        return view('article.index', [
-            'articleList' => $articleList
-        ])->with('name', 'JackXiao');
+
+        if (\Gate::allows('list', Article::class)) {
+
+            $articleList = $this->article->getList();
+            return view('article.index', [
+                'articleList' => $articleList
+            ])->with('name', 'JackXiao');
+        } else {
+            return view('403');
+        }
+
     }
 
     public function create(Request $request){

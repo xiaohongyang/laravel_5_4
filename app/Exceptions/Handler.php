@@ -3,8 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -32,6 +34,13 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+
+
+        if($exception instanceof AuthorizationException){
+
+            return response()->view('403', [], 500);
+        }
+
         parent::report($exception);
     }
 

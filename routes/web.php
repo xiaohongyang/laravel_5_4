@@ -94,3 +94,7 @@ Route::get('/user/{user}', function(App\User $user) {
 
     return $user->email;
 })->middleware('auth:api');
+
+Route::get('/articles', function(){
+    return view('index');
+})->middleware('can:listAll,App\Models\Article');

@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\URL;
     {{Hash::check('123', '$2y$10$xykSvVv.9PawV.HwoOo2luVPH1wEA1QcRNvkkNoBMAhz1WzmtFSua')}} <br/>
 
 
+    encrypt(123)=
+    {{encrypt('123')}} <br/>
+    Crypt::decrypt():{{Crypt::decrypt('eyJpdiI6IldZUmF0U1BXQVpoUDhvdFc3b0RNa2c9PSIsInZhbHVlIjoiWnp4Qk5KR1ZhVXQyc1lyc2J4WWdJQT09IiwibWFjIjoiN2YxZmJjNmNlZTg4NWQzOTY3NjA1NjRkMmJmYzM4OWJjMmQ2NzkwY2RkNGEwODE1ZTdiMzM0Yzk4OWU2OTY2NiJ9 ')}} <br/>
+
+    Crypt::encryptString(): {{Crypt::encryptString('123')}} <br/>
+    Crypt::decryptString(): {{Crypt::decryptString('eyJpdiI6IlY1SzJITVlaQjIxUkRSVVNTcGtDNkE9PSIsInZhbHVlIjoib2xOeUc3T3F5QzM0WWNOQ3YzTmtKQT09IiwibWFjIjoiYjMxMmE1MGMyMWIzZjRlYTZhYmMzZmNiNjcyZGZhZmU0YTQ2NTBiYTRhMjVmOGM2ODYzY2E4MTk1ZmY1MGNlYyJ9 ')}} <br/>
+
+    <?php
+
+            try {
+                $decrypted = decrypt('eyJpdiI6ImZmZktLaENsSzlEU2JCOXFRZzFrR2c9PSIsInZhbHVlIjoiUjd5RGI3dDVieGJDb0xJM1lITzRHdz09IiwibWFjIjoiNGRjZjFkZmM2MDA5NWQzNTQ0ZGMzYzM3MGYxNDFkNzkxZTU2NTFjNzZiMmIxYjY0N2ZiM2Y2YzU1NTI2NDRmMSJ9 ');
+            } catch (DecryptException $e) {
+                //
+            }
+
+    ?>
 
     <?php
     //info("some useful information!");

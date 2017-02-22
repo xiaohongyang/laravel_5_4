@@ -50,6 +50,36 @@ Route::get('/blade', function() {
     return view('blade');
 });
 
+//Passport
+Route::get('/redirect', function(Request $request){
+
+    //dump($request);exit;
+    $query = http_build_query([
+        'client_id' => 3,
+        'redirect_url' => 'http://laravel.54/callback',
+        'response_type' => 'code',
+        'scope' => ''
+    ]);
+
+    return redirect('/oauth/authorize?' . $query);
+});
+
+Route::get('/homee', function(Request $request){
+    $http = new GuzzleHttp\Client();
+
+    $response = $http->post('http://laravel.54/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'authorization_code',
+            'client_id' => 3,
+            'client_secret' => 'gKRXSmjWSIOVk3CNxHozkxFHzxt8kiykDGdEa2df',
+            'redirect_callback' => 'http://laravel.54/callback',
+            'code' => $request::get('code')
+        ]
+    ]);
+
+    return json_encode( (string) $response->getBody(), true);
+});
+
 
 
 /*Route::group(['namespace' => 'Auth'], function(){
@@ -59,3 +89,8 @@ Route::any('auth/resetpassword/test', 'Auth\ResetPasswordController@test');
 
 
 Route::get('/front/index', 'FrontController@index');
+
+Route::get('/user/{user}', function(App\User $user) {
+
+    return $user->email;
+})->middleware('auth:api');

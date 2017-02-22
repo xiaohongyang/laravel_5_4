@@ -185,6 +185,9 @@ return [
 
         App\Providers\ComposerServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
+
+        //添加Passport
+        Laravel\Passport\PassportServiceProvider::class,
     ],
 
     /*

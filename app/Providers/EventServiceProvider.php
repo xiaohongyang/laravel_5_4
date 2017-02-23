@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\ArticleReleased' => [
             'App\Listeners\SendArticleReleasedNotification'
+        ],
+        'Illuminate\Mail\Events\MessageSending' => [
+            'App\Listeners\LogSentMessage'
         ]
     ];
 

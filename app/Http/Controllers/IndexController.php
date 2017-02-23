@@ -22,7 +22,7 @@ class IndexController extends Controller
     
 	public function index(){
 
-		/*$user = ['email' => '258082291@qq.com' , 'subject' => 'test'];
+		$user = ['email' => '258082291@qq.com' , 'subject' => 'test'];
 		\Mail::send('403',  $user , function($message) use (&$user)
 		{
 			$message->from($user['email'], 'name')
@@ -30,7 +30,7 @@ class IndexController extends Controller
 				->subject($user['subject']);
 		});
 
-		exit;*/
+		exit;
 
 		\App::setLocale('zh');
 		return view('index');

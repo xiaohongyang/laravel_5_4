@@ -98,3 +98,11 @@ Route::get('/user/{user}', function(App\User $user) {
 Route::get('/articles', function(){
     return view('index');
 })->middleware('can:listAll,App\Models\Article');
+
+Route::get('email/{user}', function($user){
+    $exitCode = Artisan::queue('email_cmd:send', [
+        'user' => $user,
+        '--time' => 8
+    ]);
+    dd($exitCode);
+});

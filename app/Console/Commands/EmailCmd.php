@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use \App\User;
+use Illuminate\Mail\Message;
 use Symfony\Component\Console\Helper\ProgressBar;
+use \App\Mail\OrderShipped;
 
 class EmailCmd extends Command
 {
@@ -49,6 +51,25 @@ class EmailCmd extends Command
                 for($i=1; $i<$count; $i++){
                     $progressBar->advance();
                     sleep(1);
+                    if($i==1){
+
+//                        $userEmail = ['email' => '2606999878@qq.com' , 'subject' => 'test'];
+//                        \Mail::send('403',  $userEmail , function($message) use (&$userEmail)
+//                        {
+//                            $message->from($userEmail['email'], 'name')
+//                                ->to('258082291@qq.com', 'contact us')
+//                                ->subject($userEmail['subject']);
+//                        });
+
+//                         \Mail::send('403', [], function(Message $message) {
+//                                $message->to("258082291@qq.com");
+//                                $message->subject('test aabb');
+//                         });
+
+                        \Mail::to('258082291@qq.com')
+                            ->cc('281828493@qq.com')
+                            ->queue(new OrderShipped());
+                    }
                 }
                 $this->info("Send Email to {$user->email} ");
 

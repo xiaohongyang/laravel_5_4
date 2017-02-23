@@ -22,6 +22,16 @@ class IndexController extends Controller
     
 	public function index(){
 
+		/*$user = ['email' => '258082291@qq.com' , 'subject' => 'test'];
+		\Mail::send('403',  $user , function($message) use (&$user)
+		{
+			$message->from($user['email'], 'name')
+				->to('258082291@qq.com', 'contact us')
+				->subject($user['subject']);
+		});
+
+		exit;*/
+
 		\App::setLocale('zh');
 		return view('index');
 

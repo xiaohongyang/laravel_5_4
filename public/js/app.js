@@ -11640,10 +11640,10 @@ module.exports = axios;
 module.exports.default = axios;
 
 
-axios.get('/oauth/clients')
+/*axios.get('/oauth/clients')
 	.then(response => {
 	console.log(response.data)
-});
+});*/
 
 /*
 //create token
@@ -11688,7 +11688,7 @@ axios.delete('/oauth/clients/' + clientId)
 	})
 */
 
-//Oauth Scopes
+/*//Oauth Scopes
 axios.get('/oauth/scopes')
 	.then(response => {
 		console.log(response)
@@ -11708,7 +11708,7 @@ axios.get('/oauth/personal-access-tokens')
 
 //Delete Personal Access Token
 var tokenId = 'ac7d1dc55e9a9c0d5fe4e476d31131155b7989c6232dc554e342510abf773431788427808c197a48';
-axios.delete('/oauth/personal-access-tokens/' + tokenId)
+axios.delete('/oauth/personal-access-tokens/' + tokenId)*/
 
 
 

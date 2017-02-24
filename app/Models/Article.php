@@ -39,7 +39,7 @@ class Article extends Model
 
     public $timestamps = true;
 
-    public $fillable = ['title', 'author'];
+    public $fillable = ['title', 'author', 'user_id'];
 
     public function store(Request $request) {
 

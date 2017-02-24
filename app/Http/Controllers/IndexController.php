@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessPodcast;
 use App\Models\Article;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
  
@@ -22,15 +25,28 @@ class IndexController extends Controller
     
 	public function index(){
 
-		$user = ['email' => '258082291@qq.com' , 'subject' => 'test'];
-		\Mail::send('403',  $user , function($message) use (&$user)
-		{
-			$message->from($user['email'], 'name')
-				->to('258082291@qq.com', 'contact us')
-				->subject($user['subject']);
-		});
+//		$job = new ProcessPodcast(User::find(2));
+//
+//		$job->onconnection('redis');
+//		$job->delay(Carbon::now()->addSeconds(2));
+//		$r = dispatch($job);
+//
+//		//$r = event($job);
+//
+//		echo date("Y-m-d H:i:s");
+//
+//		dump($r);
+//		exit;
 
-		exit;
+//		$user = ['email' => '258082291@qq.com' , 'subject' => 'test'];
+//		\Mail::send('403',  $user , function($message) use (&$user)
+//		{
+//			$message->from($user['email'], 'name')
+//				->to('258082291@qq.com', 'contact us')
+//				->subject($user['subject']);
+//		});
+//
+//		exit;
 
 		\App::setLocale('zh');
 		return view('index');

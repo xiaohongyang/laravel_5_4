@@ -10,3 +10,7 @@ Homestead.yaml
 .idea
 .phpintel
 /nbproject/private/
+/public/css/app.css
+/public/fonts/glyphicons-halflings-regular.svg
+/public/js/app.js
+/public/mix-manifest.json

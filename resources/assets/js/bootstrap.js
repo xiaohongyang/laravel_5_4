@@ -42,13 +42,13 @@ window.axios.defaults.headers.common = {
 
  window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '6609715c077589a73b4e',
+    key: 'ca78de93c3a612137745',
     //cluster: 'eu',
     //encrypted: true
  });
 
 
-window.Echo.channel('chat-room.1')
+window.Echo.private('chat-room')
     .listen('ChatMessageWasReceived', (e) => {
         console.log(e)
 });

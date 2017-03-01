@@ -11,6 +11,27 @@
 |
 */
 
+use App\Models\Article;
+use Illuminate\Support\Facades\Broadcast;
+
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+/*Broadcast::channel("article.{articleId}", function($user, $articleId){
+    return $user->id === Article::find($articleId)->user_id;
+});
+
+Broadcast::channel("article", function($user){
+    return true;
+});
+Broadcast::channel("articlexhy", function($user){
+    return $user;
+});
+
+Broadcast::channel('order.{orderId}', function ($user, $orderId) {
+    return true;
+});*/
+Broadcast::channel('chat-room.1', function ($user) {
+    return true;
 });

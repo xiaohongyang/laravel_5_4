@@ -19,6 +19,8 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+ 
+
 </head>
 <body>
     <div id="app">
@@ -87,5 +89,6 @@
 
     <!-- Scripts -->
     <script src="{{mix('/js/app.js')}}"></script>
+
 </body>
 </html>

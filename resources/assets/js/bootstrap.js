@@ -41,6 +41,21 @@ window.axios.defaults.headers.common = {
  import Echo from "laravel-echo"
 
  window.Echo = new Echo({
-     broadcaster: 'pusher',
-     key: 'your-pusher-key'
+    broadcaster: 'pusher',
+    key: '6609715c077589a73b4e',
+    //cluster: 'eu',
+    //encrypted: true
  });
+
+
+window.Echo.channel('chat-room.1')
+    .listen('ChatMessageWasReceived', (e) => {
+        console.log(e)
+});
+
+//window.Echo.private('article')
+//    .listen('ArticleStatusUpdated', (e) => {
+//        console.log(e)
+//    });
+
+

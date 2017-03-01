@@ -43,8 +43,29 @@ const app = new Vue({
             value = value.toString();
             return value.charAt(0).toUpperCase() + value.slice(1);
         }
+    },
+    created(){
+        //Echo.private('my-channel')
+        //    .listen('my-event', (e) => {
+        //        console.log(e);
+        //    })
+
+        //Echo.join(`xhy`)
+        //        .listen('MessagePosted', (e) => {
+        //        console.log(e);
+        //});
+
+
+        //Echo.channel('chat-room.1')
+        //    .listen('ChatMessageWasReceived', function(e){
+        //        console.log(e)
+        //    })
+
+
     }
 });
+
+
 
 
 

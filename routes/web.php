@@ -65,6 +65,7 @@ Route::get('/redirect', function(Request $request){
 });
 
 Route::get('/homee', function(Request $request){
+
     $http = new GuzzleHttp\Client();
 
     $response = $http->post('http://laravel.54/oauth/token', [
@@ -80,6 +81,7 @@ Route::get('/homee', function(Request $request){
     return json_encode( (string) $response->getBody(), true);
 });
 
+Route::get('home/test', "HomeController@test");
 
 
 /*Route::group(['namespace' => 'Auth'], function(){

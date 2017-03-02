@@ -8,6 +8,14 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
+                    <?php
+                    use Carbon\Carbon;if(!cache('uid4Hee')){
+                            dump("uid4Hee not exist!");
+                            cache(['uid4Hee'=>11], Carbon::now()->addSeconds(3));
+                        } else {
+                            dump("uid exist!");
+                        }
+                    ?>
                     You are logged in!
                 </div>
             </div>

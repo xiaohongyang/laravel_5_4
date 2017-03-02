@@ -33,9 +33,13 @@ Broadcast::channel('order.{orderId}', function ($user, $orderId) {
     return true;
 });*/
 
-Broadcast::channel('chat-room', function ($user) {
+//Broadcast::channel('chat-room', function ($user) {
+//    return true;
+//});
+Broadcast::channel('chat-room.{messageId}', function ($user, $messageId) {
     return true;
 });
+
 
 
 //Broadcast::channel('chat-room.{id}', function ($user, $id) {

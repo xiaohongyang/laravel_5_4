@@ -47,8 +47,8 @@ window.axios.defaults.headers.common = {
     //encrypted: true
  });
 
-
-window.Echo.private('chat-room')
+var id = 3;
+window.Echo.private('chat-room.'+ id)
     .listen('ChatMessageWasReceived', (e) => {
         console.log(e)
 });

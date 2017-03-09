@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Collection;
 
 
 class HomeController extends Controller
@@ -35,6 +36,9 @@ class HomeController extends Controller
     }
 
     public function test(){
+
+
+
 //        if(!cache("name")) {
 //            cache( ['name' => Auth::user()->email], Carbon::now()->addMinutes(10));
 //        }
@@ -53,11 +57,15 @@ class HomeController extends Controller
 
         //Cache::flush();
 
-        Cache::store("database")->put("name", "Xiaohongyang", Carbon::now()->addMinute(2));
+//        Cache::store("database")->put("name", "Xiaohongyang", Carbon::now()->addMinute(2));
+//
+//        dump(Cache::get("name"));
+//
+//        dump(date('Y-m-d H:i:s', 1488447951));
 
-        dump(Cache::get("name"));
-
-        dump(date('Y-m-d H:i:s', 1488447951));
+        $r = collect([1,2,3,5,6,8, 'jack'])->max();
+        $r = collect([1,2,3,5,6,8, 'jack'])->min();
+        dump($r);
 
     }
 }

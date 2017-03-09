@@ -7,6 +7,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -35,12 +36,6 @@ class Handler extends ExceptionHandler
     public function report(Exception $exception)
     {
 
-
-        if($exception instanceof AuthorizationException){
-
-            return response()->view('403', [], 500);
-        }
-
         parent::report($exception);
     }
 
@@ -53,6 +48,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if($exception instanceof AuthorizationException){
+
+            return response()->view('403', [], 500);
+        } else if ($exception->getStatusCode() == 403) {
+
+            return response()->view('403');
+        } else if ($exception instanceof NotFoundHttpException)
+        {
+            return response()->view('404', [], 404);
+        }
+
         return parent::render($request, $exception);
     }
 

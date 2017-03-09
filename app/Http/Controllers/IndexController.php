@@ -17,7 +17,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 //class IndexController extends BaseController
 class IndexController extends Controller
@@ -25,6 +25,11 @@ class IndexController extends Controller
     
 	public function index(){
 
+
+		Log::info("test");
+		Log::error("error",['name'=>"jack"]);
+
+		abort(403, 'Unauthorized action.');
 //		$job = new ProcessPodcast(User::find(2));
 //
 //		$job->onconnection('redis');

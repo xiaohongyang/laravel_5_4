@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Storage;
 //class IndexController extends BaseController
 class IndexController extends Controller
 {
@@ -158,6 +158,31 @@ class IndexController extends Controller
     }
 
 
+    public function storage(){
 
+        echo asset('storage/test.txt');
+        \Storage::disk('local')->put('test.txt',"Contents");
+        echo \Storage::disk('local')->get('test.txt');
+        return view('index.storage');
+    }
+
+    public function storageUpload(Request $request){
+
+        $path = \Storage::putFileAs("headpic", $request->file('headpic'),'test.jpg');
+        $path = \Storage::putFile("headpic", $request->file('headpic'));
+        echo $path;
+        $path = $request->file('headpic')->storeAs('headpic', '001.jpg');
+        echo $path;
+        \Storage::setVisibility('headpic/001.jpg', 'public');
+
+        if(\Storage::exists('headpic/ltIY6ALVzWv9MXZz1WUE3Z1CIfgA7oTH0pvdEhDU.jpeg')){
+            \Storage::delete('headpic/ltIY6ALVzWv9MXZz1WUE3Z1CIfgA7oTH0pvdEhDU.jpeg');
+        }
+        if(!\Storage::exists('new_directory')){
+            \Storage::makeDirectory('new_directory');
+        }
+        exit;
+
+    }
 
 }

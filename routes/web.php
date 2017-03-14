@@ -110,3 +110,5 @@ Route::get('email/{user}', function($user){
     ]);
     dd($exitCode);
 });
+Route::get('storages', 'IndexController@storage');
+Route::post('storages', 'IndexController@storageUpload');

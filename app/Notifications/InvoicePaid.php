@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\URL;
 
-class InvoicePaid extends Notification
+class InvoicePaid extends Notification implements ShouldQueue
 {
     use Queueable;
 

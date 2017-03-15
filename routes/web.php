@@ -112,3 +112,5 @@ Route::get('email/{user}', function($user){
 });
 Route::get('storages', 'IndexController@storage');
 Route::post('storages', 'IndexController@storageUpload');
+
+Route::get('notification', 'NotificationController@index');

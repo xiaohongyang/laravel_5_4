@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\InvoicePaid;
+use App\Notifications\InvoicePaidMarkDown;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,8 +20,10 @@ class NotificationController extends Controller
         //dump($rs);
         //2. use Notification Facade
         //$rs = \Notification::send($user, new InvoicePaid()));
-        $when = Carbon::now()->addMinutes(10);
-        $rs = $user->notify((new InvoicePaid())->delay($when));
-        dump($rs);
+        //$when = Carbon::now()->addMinutes(10);
+        //$rs = $user->notify((new InvoicePaid())->delay($when));
+        //dump($rs);
+        //3. Markdown Mail Notifications
+        $user->notify(new InvoicePaidMarkDown($user));
     }
 }

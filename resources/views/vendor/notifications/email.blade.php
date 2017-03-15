@@ -9,7 +9,7 @@
 # Hello!
 @endif
 @endif
-
+custome view Hello<br/>
 {{-- Intro Lines --}}
 @foreach ($introLines as $line)
 {{ $line }}

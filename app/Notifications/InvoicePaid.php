@@ -41,14 +41,16 @@ class InvoicePaid extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-//        return (new MailMessage)
-//                    ->greeting("你好!")
-//                    ->line('The introduction to the notification.')
-//                    ->action('Notification Action', \URL::to('notification'))
-//                    ->line('Thank you for using our application!')
-//                    ;
+        return (new MailMessage)
+                    ->subject("测试主题")
+                    ->greeting("你好!")
+                    ->error()
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', \URL::to('notification'))
+                    ->line('Thank you for using our application!')
+                    ;
 
-        return (new MailMessage())->view('email.notification', ['title' => 'hello this\'s just a test!']);
+//        return (new MailMessage())->view('email.notification', ['title' => 'hello this\'s just a test!']);
     }
 
     /**

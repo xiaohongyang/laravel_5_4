@@ -32,4 +32,11 @@ class User extends Authenticatable
     public function isAdmin(){
         return $this->name == 'JackXiao';
     }
+
+    public function routeNotificationForMail()
+    {
+        return '258082291@qq.com';
+    }
+
+
 }

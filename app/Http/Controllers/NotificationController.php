@@ -24,6 +24,18 @@ class NotificationController extends Controller
         //$rs = $user->notify((new InvoicePaid())->delay($when));
         //dump($rs);
         //3. Markdown Mail Notifications
-        $user->notify(new InvoicePaidMarkDown($user));
+        //$user->notify(new InvoicePaidMarkDown($user));
+
+        $collections = $user->unreadNotifications ;
+//        print_r($collections);
+        foreach ($collections as $collection){
+
+            if($collection->id == 'ff958ff0-2fb8-4917-b954-20112473421e'){
+                //$rs = $collection->markAsRead();
+                $collection->markAsRead();
+                var_dump($collection);
+            }
+        }
+
     }
 }

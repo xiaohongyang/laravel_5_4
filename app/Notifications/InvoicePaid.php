@@ -62,7 +62,8 @@ class InvoicePaid extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'user' => 'JackXiao' ,
+            'content' => 'Hello Test'
         ];
     }
 }

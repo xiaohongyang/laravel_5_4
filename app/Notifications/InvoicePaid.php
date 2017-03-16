@@ -66,4 +66,11 @@ class InvoicePaid extends Notification implements ShouldQueue
             'content' => 'Hello Test'
         ];
     }
+
+    public function toDatabase($notifiable){
+        return [
+            'user' => 'JackXiao' ,
+            'content' => 'Hello Test For Database'
+        ];
+    }
 }

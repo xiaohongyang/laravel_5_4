@@ -40,4 +40,8 @@ class NotificationController extends Controller
         $user->notify(new InvoicePaid());
 
     }
+
+    public function listen(){
+        return view('notification.listen');
+    }
 }

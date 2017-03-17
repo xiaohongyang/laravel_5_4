@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -73,4 +74,12 @@ class InvoicePaid extends Notification implements ShouldQueue
             'content' => 'Hello Test For Database'
         ];
     }
+
+    public function toBroadcast($notifiable){
+        return new BroadcastMessage([
+            'user' => 'JackXiao',
+            'content' => 'Hello, Are you here?'
+        ]);
+    }
+
 }

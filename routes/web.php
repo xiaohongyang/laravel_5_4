@@ -114,3 +114,4 @@ Route::get('storages', 'IndexController@storage');
 Route::post('storages', 'IndexController@storageUpload');
 
 Route::get('notification', 'NotificationController@index');
+Route::get('notification/listen', 'NotificationController@listen');

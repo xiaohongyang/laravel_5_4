@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@push('scripts', '<script src="/js/app.js"></script>');
+<html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -19,7 +20,7 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
- 
+
 
 </head>
 <body>
@@ -87,8 +88,8 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-    <script src="{{mix('/js/app.js')}}"></script>
+    {{--<script src="{{mix('/js/app.js')}}"></script>--}}
+    @stack('scripts')
 
 </body>
 </html>

@@ -29,7 +29,7 @@ class IndexController extends Controller
 		Log::info("test");
 		Log::error("error",['name'=>"jack"]);
 
-		abort(403, 'Unauthorized action.');
+		//abort(403, 'Unauthorized action.');
 //		$job = new ProcessPodcast(User::find(2));
 //
 //		$job->onconnection('redis');

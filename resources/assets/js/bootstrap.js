@@ -40,7 +40,7 @@ window.axios.defaults.headers.common = {
 
  import Echo from "laravel-echo"
 
- window.Echo = new Echo({
+/* window.Echo = new Echo({
     broadcaster: 'pusher',
     key: 'ca78de93c3a612137745',
     //cluster: 'eu',
@@ -51,7 +51,7 @@ var id = 3;
 window.Echo.private('chat-room.'+ id)
     .listen('ChatMessageWasReceived', (e) => {
         console.log(e)
-});
+});*/
 
 //window.Echo.private('article')
 //    .listen('ArticleStatusUpdated', (e) => {
@@ -59,3 +59,5 @@ window.Echo.private('chat-room.'+ id)
 //    });
 
 
+
+alert(321456444)

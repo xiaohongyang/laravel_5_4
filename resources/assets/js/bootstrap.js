@@ -60,4 +60,3 @@ window.Echo.private('chat-room.'+ id)
 
 
 
-alert(321456444)

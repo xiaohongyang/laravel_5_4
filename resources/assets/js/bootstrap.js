@@ -68,7 +68,12 @@ var echo = window.Echo = new Echo({
 });
 
 //listen sisten redis publish event by laravel-echo-server
-echo.channel("chat-room")
-    .listen("ChatMessageWasReceived", function(e){
+// echo.channel("chat-room")
+//     .listen("ChatMessageWasReceived", function(e){
+//         console.log(e)
+//     })
+
+    echo.private("chat-room")
+    .listen("ChatMessageWasReceived", function(e) {
         console.log(e)
     })

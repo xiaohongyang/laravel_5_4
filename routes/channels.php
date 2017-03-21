@@ -36,10 +36,14 @@ Broadcast::channel('order.{orderId}', function ($user, $orderId) {
 //Broadcast::channel('chat-room', function ($user) {
 //    return true;
 //});
-Broadcast::channel('chat-room.{messageId}', function ($user, $messageId) {
+//Broadcast::channel('chat-room.{messageId}', function ($user, $messageId) {
+//    return true;
+//});
+
+Broadcast::channel("chat-room", function($user){
+    //\Log::info("chat-room channel", ['user_id' => $user->id, 'time' => \Carbon\Carbon::now()]);
     return true;
 });
-
 
 
 //Broadcast::channel('chat-room.{id}', function ($user, $id) {

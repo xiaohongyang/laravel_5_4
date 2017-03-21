@@ -89,6 +89,8 @@
     </div>
 
     {{--<script src="{{mix('/js/app.js')}}"></script>--}}
+    <!--include socket.io.js-->
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
     @stack('scripts')
 
 </body>

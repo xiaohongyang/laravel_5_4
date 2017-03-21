@@ -60,3 +60,15 @@ window.Echo.private('chat-room.'+ id)
 
 
 
+var echo = window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host : window.location.hostname + ":6001"
+    //cluster: 'eu',
+    //encrypted: true
+});
+
+//listen sisten redis publish event by laravel-echo-server
+echo.channel("chat-room")
+    .listen("ChatMessageWasReceived", function(e){
+        console.log(e)
+    })

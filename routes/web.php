@@ -114,4 +114,17 @@ Route::get('storages', 'IndexController@storage');
 Route::post('storages', 'IndexController@storageUpload');
 
 Route::get('notification', 'NotificationController@index');
+
 Route::get('notification/listen', 'NotificationController@listen');
+
+//Route::get('redis/publish', 'RedisController@publish');
+
+Route::get('test', function(){
+    $user = \App\User::first();
+    $message = \App\ChatMessage::create([
+        'user_id' => $user->id,
+        'message' => "test"
+    ]);
+
+    event(new \App\Events\ChatMessageWasReceived($message, $user));
+});

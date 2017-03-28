@@ -44,10 +44,17 @@ class ArticleController extends BaseUserController
                 return back();
             }
         } else {
+
+            $data = [];
+            if ($request::get('id')) {
+                $article = Article::find($request::get('id'));
+                $data['contents'] = "321abc"; //$article->detail()->contents;
+            }
+
             $form = $formBuild->create(ArticleForm::class, [
                 'method' => 'post',
                 'url' => route('article-create')
-            ]);
+            ], $data);
         }
         //return self::getXhyView();
         return self::getXhyView(['article' => $article, 'form' => $form]);

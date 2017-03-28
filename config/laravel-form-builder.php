@@ -45,5 +45,6 @@ return [
 
     'custom_fields' => [
 //        'datetime' => App\Forms\Fields\Datetime::class
+        'editor_field' => App\Forms\Fields\EditorField::class
     ]
 ];

@@ -25,8 +25,8 @@
                 <td>
                     <div class="btn-group">
 
-                        <a href="{{ route('article-edit', ['id'=>3]) }}" class="btn btn-primary btn-xs ">edit</a>
-                        <a href="{{ route('article-del', ['id'=>3]) }}" class="btn btn-primary btn-xs ">del</a>
+                        <a href="{{ route('article-create', ['id'=>$article->id]) }}" class="btn btn-primary btn-xs ">edit</a>
+                        <a href="{{ route('article-del', ['id'=>$article->id]) }}" class="btn btn-primary btn-xs ">del</a>
                     </div>
                 </td>
             </tr>

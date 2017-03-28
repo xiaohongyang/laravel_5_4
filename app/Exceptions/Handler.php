@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-        if($exception instanceof AuthorizationException){
+        if($exception instanceof AuthenticationException){
 
             return response()->view('403', [], 500);
         } else if ($exception->getStatusCode() == 403) {

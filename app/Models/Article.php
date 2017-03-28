@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Scopes\DeletedScope;
+use App\User;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -11,9 +13,13 @@ use App\Scopes\AuthorScope;
 use App\Observer\ArticleObserver;
 use Illuminate\Support\Facades\Event;
 use App\Events\ArticleReleased;
+use League\Flysystem\Exception;
 
 class Article extends Model
 {
+
+    protected $table = 'articles';
+
     //
     protected static function boot()
     {
@@ -31,6 +37,8 @@ class Article extends Model
     }
 
 
+
+
     use SoftDeletes;
 
     protected $primaryKey = 'id';
@@ -41,11 +49,12 @@ class Article extends Model
 
     public $fillable = ['title', 'author', 'user_id'];
 
-    public function store(Request $request) {
+    public function create(\Request $request) {
 
         $article = new Article;
-        $article->title = $request->title;
-        $article->author = $request->get('author', '');
+        $article->title = $request::get('title');
+        $article->author = '5';
+        $article->user_id = \Auth::id();
         return $article->save();
     }
 
@@ -106,5 +115,8 @@ class Article extends Model
     }
 
 
+    public function authorUser(){
+        return $this->belongsTo(User::class, 'author', 'id');
+    }
 
 }

@@ -26,8 +26,8 @@ class IndexController extends Controller
 	public function index(){
 
 
-		Log::info("test");
-		Log::error("error",['name'=>"jack"]);
+		//Log::info("test");
+		//Log::error("error",['name'=>"jack"]);
 
 		//abort(403, 'Unauthorized action.');
 //		$job = new ProcessPodcast(User::find(2));
@@ -53,7 +53,8 @@ class IndexController extends Controller
 //
 //		exit;
 
-		\App::setLocale('zh');
+		//\App::setLocale('zh');
+        //echo 33;exit;
 		return view('index');
 
 		$articles = Article::all()->where('id', '>', 0)->take(3);

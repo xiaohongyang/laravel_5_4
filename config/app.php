@@ -188,6 +188,7 @@ return [
         //添加Passport
         Laravel\Passport\PassportServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Stevenyangecho\UEditor\UEditorServiceProvider::class
 
     ],
 

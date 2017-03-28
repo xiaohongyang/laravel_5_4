@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7e73d1e3b4cdd42286c1debc9616e09",
+    "content-hash": "f915687b3bc2ac63fe75660bcba8e739",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -709,16 +709,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855"
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/guzzle/psr7/0d6c7ca039329247e4f0f8f8f6506810e8248855.zip",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855",
+                "url": "https://files.phpcomposer.com/files/guzzle/psr7/f5b8a8512e2b58b0071a7280e39f14f72e05d87c.zip",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "shasum": ""
             },
             "require": {
@@ -770,7 +770,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-02-27T10:51:17+00:00"
+            "time": "2017-03-20T17:10:46+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -915,16 +915,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.15",
+            "version": "v5.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ecc6468b8af30b77566a8519ce8898740ef691d7"
+                "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/laravel/framework/ecc6468b8af30b77566a8519ce8898740ef691d7.zip",
-                "reference": "ecc6468b8af30b77566a8519ce8898740ef691d7",
+                "url": "https://files.phpcomposer.com/files/laravel/framework/6cf379ec34d08bcdc9c7183e369a8fdf04ade80d.zip",
+                "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
                 "shasum": ""
             },
             "require": {
@@ -1040,7 +1040,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-03-02T14:41:40+00:00"
+            "time": "2017-03-21T19:34:41+00:00"
         },
         {
             "name": "laravel/passport",
@@ -1328,16 +1328,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.35",
+            "version": "1.0.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "dda7f3ab94158a002d9846a97dc18ebfb7acc062"
+                "reference": "78b5cc4feb61a882302df4fbaf63b7662e5e4ccd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/thephpleague/flysystem/dda7f3ab94158a002d9846a97dc18ebfb7acc062.zip",
-                "reference": "dda7f3ab94158a002d9846a97dc18ebfb7acc062",
+                "url": "https://files.phpcomposer.com/files/thephpleague/flysystem/78b5cc4feb61a882302df4fbaf63b7662e5e4ccd.zip",
+                "reference": "78b5cc4feb61a882302df4fbaf63b7662e5e4ccd",
                 "shasum": ""
             },
             "require": {
@@ -1407,7 +1407,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-02-09T11:33:58+00:00"
+            "time": "2017-03-22T15:43:14+00:00"
         },
         {
             "name": "league/oauth2-server",
@@ -2000,16 +2000,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.2",
+            "version": "v0.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "97113db4107a4126bef933b60fea6dbc9f615d41"
+                "reference": "1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/bobthecow/psysh/97113db4107a4126bef933b60fea6dbc9f615d41.zip",
-                "reference": "97113db4107a4126bef933b60fea6dbc9f615d41",
+                "url": "https://files.phpcomposer.com/files/bobthecow/psysh/1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e.zip",
+                "reference": "1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
                 "shasum": ""
             },
             "require": {
@@ -2069,7 +2069,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-03-01T00:13:29+00:00"
+            "time": "2017-03-19T21:40:44+00:00"
         },
         {
             "name": "pusher/pusher-php-server",
@@ -2116,31 +2116,82 @@
             "time": "2016-12-22T10:46:28+00:00"
         },
         {
-            "name": "ramsey/uuid",
-            "version": "3.5.2",
+            "name": "qiniu/php-sdk",
+            "version": "v7.1.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ramsey/uuid.git",
-                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954"
+                "url": "https://github.com/qiniu/php-sdk.git",
+                "reference": "b91653485e36b4797d7a302cc86c49695e47a642"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/ramsey/uuid/5677cfe02397dd6b58c861870dfaa5d9007d3954.zip",
-                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954",
+                "url": "https://files.phpcomposer.com/files/qiniu/php-sdk/b91653485e36b4797d7a302cc86c49695e47a642.zip",
+                "reference": "b91653485e36b4797d7a302cc86c49695e47a642",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Qiniu\\": "src/Qiniu"
+                },
+                "files": [
+                    "src/Qiniu/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Qiniu",
+                    "email": "sdk@qiniu.com",
+                    "homepage": "http://www.qiniu.com"
+                }
+            ],
+            "description": "Qiniu Resource (Cloud) Storage SDK for PHP",
+            "homepage": "http://developer.qiniu.com/",
+            "keywords": [
+                "cloud",
+                "qiniu",
+                "sdk",
+                "storage"
+            ],
+            "time": "2016-11-18T02:57:31+00:00"
+        },
+        {
+            "name": "ramsey/uuid",
+            "version": "3.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/uuid.git",
+                "reference": "4ae32dd9ab8860a4bbd750ad269cba7f06f7934e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/ramsey/uuid/4ae32dd9ab8860a4bbd750ad269cba7f06f7934e.zip",
+                "reference": "4ae32dd9ab8860a4bbd750ad269cba7f06f7934e",
                 "shasum": ""
             },
             "require": {
                 "paragonie/random_compat": "^1.0|^2.0",
-                "php": ">=5.4"
+                "php": "^5.4 || ^7.0"
             },
             "replace": {
                 "rhumsaa/uuid": "self.version"
             },
             "require-dev": {
                 "apigen/apigen": "^4.1",
-                "codeception/aspect-mock": "1.0.0",
+                "codeception/aspect-mock": "^1.0 | ^2.0",
                 "doctrine/annotations": "~1.2.0",
-                "goaop/framework": "1.0.0-alpha.2",
+                "goaop/framework": "1.0.0-alpha.2 | ^1.0 | ^2.1",
                 "ircmaxell/random-lib": "^1.1",
                 "jakub-onderka/php-parallel-lint": "^0.9.0",
                 "mockery/mockery": "^0.9.4",
@@ -2195,7 +2246,54 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2016-11-22T19:21:44+00:00"
+            "time": "2017-03-26T20:37:53+00:00"
+        },
+        {
+            "name": "stevenyangecho/laravel-u-editor",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stevenyangecho/laravel-u-editor.git",
+                "reference": "d5fb0afc6dd6008630ca04ded116e65cea8e3477"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/stevenyangecho/laravel-u-editor/d5fb0afc6dd6008630ca04ded116e65cea8e3477.zip",
+                "reference": "d5fb0afc6dd6008630ca04ded116e65cea8e3477",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0",
+                "qiniu/php-sdk": "7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stevenyangecho\\UEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Yang",
+                    "email": "yqmking@163.com"
+                }
+            ],
+            "description": "UEditor for laravel5. Support i18n. UEditor is a Rich Text Web Editor From Baidu.",
+            "keywords": [
+                "laravel",
+                "laravel-u-editor",
+                "laravel5 web text editor",
+                "steven yang",
+                "stevenyangecho",
+                "ueditor"
+            ],
+            "time": "2017-02-04T15:07:38+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4019,16 +4117,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.16",
+            "version": "5.7.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "dafc78e2a7d12139b0e97078d1082326bd09363d"
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/phpunit/dafc78e2a7d12139b0e97078d1082326bd09363d.zip",
-                "reference": "dafc78e2a7d12139b0e97078d1082326bd09363d",
+                "url": "https://files.phpcomposer.com/files/sebastianbergmann/phpunit/68752b665d3875f9a38a357e3ecb35c79f8673bf.zip",
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
                 "shasum": ""
             },
             "require": {
@@ -4097,7 +4195,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-15T13:02:34+00:00"
+            "time": "2017-03-19T16:52:12+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

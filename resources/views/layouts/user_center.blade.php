@@ -21,6 +21,7 @@
         ]) !!};
     </script>
 
+    @include('UEditor::head');
 
 </head>
 <body>

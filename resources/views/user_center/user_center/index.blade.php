@@ -1,2 +1,2 @@
-@extends('layouts.user_center');
+@extends('layouts.user_center')
 

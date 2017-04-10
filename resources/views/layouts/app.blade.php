@@ -1,4 +1,4 @@
-@push('scripts', '<script src="/js/app.js"></script>');
+@push('scripts', '<script src="/js/app.js"></script>')
 <html>
 <html lang="en">
 <head>
@@ -56,6 +56,8 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+
+                            <li><a href="{{ route('home') }}">用户中心</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }}
@@ -77,6 +79,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+
                                 </ul>
                             </li>
                         @endif
@@ -85,7 +88,14 @@
             </div>
         </nav>
 
-        @yield('content')
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
     </div>
 
     {{--<script src="{{mix('/js/app.js')}}"></script>--}}

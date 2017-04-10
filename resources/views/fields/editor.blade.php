@@ -1,3 +1,3 @@
-<script id="container" name="content" type="text/plain">
+<script id="container" name="contents" type="text/plain">
 <?= $options['editorData'] ?>
 </script>

@@ -7,6 +7,7 @@ use App\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\HttpRequest;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Scopes\AuthorScope;
@@ -47,24 +48,82 @@ class Article extends Model
 
     public $timestamps = true;
 
-    public $fillable = ['title', 'author', 'user_id'];
+    public $fillable = ['title', 'author', 'user_id', 'thumb'];
 
-    public function create(\Request $request) {
+    public function createOrEdit(Request $request) {
+
+        $result = $request->get('id') ? $this->_edit($request->get('id'), $request) : $this->_create($request);
+        return $result;
+    }
+    public function test(){}
+
+
+    private function _create(Request $request) {
 
         $article = new Article;
-        $article->title = $request::get('title');
-        $article->author = '5';
-        $article->user_id = \Auth::id();
+        $this->_handle($article, $request);
         $result = $article->save();
 
         $articleDetail = new ArticleDetail();
-        $articleDetail->contents = $request::get('content','');
+        $articleDetail->contents = $request->get('contents');
 
         if ($result) {
-            $article->detail()->save($articleDetail);
-            //$article->detail()->save(new ArticleDetail(['contents' => '321']));
+            //保存detail关联表
+            $article->detail() ->save($articleDetail);
+
+            //保存标签
+            $tags = $request->get('tags');
+            $tags = explode(',', $tags);
+            if (is_array($tags) && count($tags)) {
+
+                $relation = new ArticleTagRelationsModel();
+                foreach ($tags as $item) {
+                    $tag = ArticleTagsModel::firstOrCreate(['name' => $item]);
+                    $relation->create($article, $tag);
+                }
+            }
         }
         return $result;
+    }
+
+    private function _edit($id, Request $request) {
+        $article = $this::find($id);
+        $this->_handle($article, $request);
+        $result = $article->save();
+
+        if ($result) {
+
+            //详情
+            $detail = $article->detail;
+            $input = ['contents' => $request->get('contents')];
+            $result = $detail->fill($input)->save();
+            \Log::info('$detail->fill($request->all())->save() 结果:' . $request);
+
+            if ($article->tags && count($article->tags)) {
+                foreach ($article->tags as $item) {
+                    $item->delete();
+                }
+            }
+            //保存标签
+            $tags = $request->get('tags');
+            $tags = explode(',', $tags);
+            if (is_array($tags) && count($tags)) {
+                $relation = new ArticleTagRelationsModel();
+                foreach ($tags as $item) {
+                    $tag = ArticleTagsModel::firstOrCreate(['name' => $item]);
+                    $relation->create($article, $tag);
+                }
+            }
+        }
+        return $result;
+    }
+
+    private function _handle(&$article, Request $request) {
+
+        $article->title = $request->get('title');
+        $article->thumb = $request->get('thumb');
+        $article->author = '5';
+        $article->user_id = \Auth::id();
     }
 
     public function save(array $options = [])
@@ -90,9 +149,23 @@ class Article extends Model
         return $article;
     }
 
-    public function doDelete(Request $request){
-        $articles = Article::where(['title'=>$request->title]);
-        return $articles->delete();
+    public function doDelete($id){
+
+        if (!is_int($id) || !$id)
+            return false;
+
+        $article = Article::find($id);
+        $result = false;
+        if ($article->delete()) {
+
+            if ($article->tags && count($article->tags)) {
+                foreach ($article->tags as $tag) {
+                    $tag->delete();
+                }
+            }
+            $result = true;
+        }
+        return $result;
     }
 
 
@@ -134,4 +207,7 @@ class Article extends Model
         return $this->hasOne(ArticleDetail::class, 'article_id');
     }
 
+    public function tags(){
+        return $this->hasMany(ArticleTagRelationsModel::class, 'article_id');
+    }
 }

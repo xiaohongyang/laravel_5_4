@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
         if($exception instanceof AuthenticationException){
 
             return response()->view('403', [], 500);
-        } else if ($exception->getStatusCode() == 403) {
+        } else if (method_exists($exception, 'getStatusCode') && $exception->getStatusCode() == 403) {
 
             return response()->view('403');
         } else if ($exception instanceof NotFoundHttpException)

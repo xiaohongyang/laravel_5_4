@@ -27,17 +27,17 @@ class ArticleController extends BaseUserController
     /**
      * 创建文章
      */
-    public function create(FormBuilder $formBuild, \Request $request){
+    public function create(FormBuilder $formBuild, Request $request){
 
         $article = new Article();
-        if ($request::method() == 'POST') {
+        if ($request->method() == 'POST') {
 
             $form = $formBuild->create(ArticleForm::class);
             if(!$form->isValid()) {
                 return redirect()->back()->withErrors($form->getErrors())->withInput();
             }
 
-            $rs = $article->create($request);
+            $rs = $article->createOrEdit($request);
             if ($rs) {
                 return redirect()->route('user-article-list');
             } else {
@@ -45,16 +45,11 @@ class ArticleController extends BaseUserController
             }
         } else {
 
-            $data = [];
-            if ($request::get('id')) {
-                $article = Article::find($request::get('id'));
-                $data['contents'] = "321abc"; //$article->detail()->contents;
-            }
-
             $form = $formBuild->create(ArticleForm::class, [
                 'method' => 'post',
-                'url' => route('article-create')
-            ], $data);
+                'url' => route('user-article-create'),
+                'model' => $request->get('id') ? Article::find($request->get('id')) : null
+            ]);
         }
         //return self::getXhyView();
         return self::getXhyView(['article' => $article, 'form' => $form]);
@@ -74,8 +69,28 @@ class ArticleController extends BaseUserController
     /**
      * 文章删除
      */
-    public function del(){
-        return "del";
+    public function del(Request $request){
+
+        $data = $request->all();
+        $validator = new \Validator();
+        if ($validator::make($data, ['id'=>'required'])->passes() ){
+
+            $article = new Article();
+            $rs = $article->doDelete($data['id']);
+            if ($rs) {
+
+                $request->session()->flash('message', '删除成功!');
+            } else {
+                $request->session()->flash('message', '删除失败!');
+            }
+        } else {
+            $request->session()->flash('message', '参数错误!');
+        }
+        return redirect()->back();
+    }
+
+    public function discussList() {
+        return 'discuss list';
     }
 
 }

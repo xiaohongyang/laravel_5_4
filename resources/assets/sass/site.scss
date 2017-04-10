@@ -1,0 +1,12 @@
+input[type=file] {
+  background: none;
+  border : none;
+}
+
+input[type="file"].ajax_upload {
+  display: none;
+}
+img.ajax_upload_img {
+  width: 60px;
+  height: 60px;
+}

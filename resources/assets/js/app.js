@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29,43 +31,20 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
 );
-
-const app = new Vue({
-    el: '#app',
-    data : {
-        message : 'hello, test Message!'
-    },
-
-    filters : {
-        capitalize : function(value) {
-            if(!value ) return '';
-
-            value = value.toString();
-            return value.charAt(0).toUpperCase() + value.slice(1);
-        }
-    },
-    created(){
-        //Echo.private('my-channel')
-        //    .listen('my-event', (e) => {
-        //        console.log(e);
-        //    })
-
-        //Echo.join(`xhy`)
-        //        .listen('MessagePosted', (e) => {
-        //        console.log(e);
-        //});
-
-
-        //Echo.channel('chat-room.1')
-        //    .listen('ChatMessageWasReceived', function(e){
-        //        console.log(e)
-        //    })
-
-
-    }
-});
-
-
-
-
+//
+// const app = new Vue({
+//     el: '#app',
+//     data : {
+//         message : 'hello, test Message!'
+//     },
+//
+//     filters : {
+//         capitalize : function(value) {
+//             if(!value ) return '';
+//
+//             value = value.toString();
+//             return value.charAt(0).toUpperCase() + value.slice(1);
+//         }
+//     },
+// });
 

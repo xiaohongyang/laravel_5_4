@@ -31,4 +31,56 @@
         });
     </script>
 
+    <a href="javascript:void(0)" class="btn btn-xs btn-primary" v-on:click="revertString"> </a>
+
+   {{-- @include('user_center.article.upload')--}}
+
+
+
+@endsection
+
+@section('scripts')
+    {{--{{  Html::script(mix('js/article/article.js')) }}--}}
+
+
+    <script type="text/javascript">
+
+        $('body').on('click', '.ajax_upload_img', function(){
+
+            $(this).prev().prev('.ajax_upload').trigger('click');
+        })
+        $('input.ajax_upload').change(function(){
+
+            var t = $(this)
+            var file = t.get(0).files[0];
+            var url = t.attr('data-url');
+            var directory = t.attr('data-directory');
+
+            var formData = new FormData();;
+            formData.append('thumb' , file);
+            formData.append('_token', window.Laravel.csrfToken);
+            formData.append('directory', directory);
+            var data = formData;
+            $.ajax({
+                url : url,
+                data : formData,
+                type : 'post',
+                success : function (json) {
+                    console.log(json)
+                    if (json.result == true) {
+                        t.next('input[type=hidden]').val(json.file)
+                        t.next().next('.ajax_upload_img').attr('src', getImageUrl(json.file))
+                    } else {
+                        console.log(json);
+                        try {
+                            alert (json.errors[t.next('input[type=hidden]').attr('name')][0] )
+                        }catch (e){}
+                    }
+                },
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+            })
+        })
+    </script>
+
 @endsection

@@ -1,4 +1,4 @@
-@push('scripts', '<script src="/js/app.js"></script>');
+{{--@push('scripts', '<script src="/js/app.js"></script>')--}}
 <html>
 <html lang="en">
 <head>
@@ -13,15 +13,18 @@
 
     <!-- Styles -->
     <link href="{{mix('/css/app.css')}}" rel="stylesheet">
+    <link href="{{mix('/css/site.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
-        ]) !!};
+            'imgHost' => env('APP_IMG_URL')
+        ]) !!}
+
     </script>
 
-    @include('UEditor::head');
+    @include('UEditor::head')
 
 </head>
 <body>
@@ -40,7 +43,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="/">
                     {{ config('app.name', 'Laravel') }}
                 </a>
             </div>
@@ -105,7 +108,9 @@
                 </div>
             </div>
             <div class="col-md-9">
-                @yield('content')
+                <div id="layout-content">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>
@@ -115,8 +120,13 @@
 
 {{--<script src="{{mix('/js/app.js')}}"></script>--}}
 <!--include socket.io.js-->
-<script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+{{--<script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>--}}
+
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/site.js') }}"></script>
 @stack('scripts')
+
+@yield('scripts')
 
 </body>
 </html>

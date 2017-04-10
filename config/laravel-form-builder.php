@@ -45,6 +45,7 @@ return [
 
     'custom_fields' => [
 //        'datetime' => App\Forms\Fields\Datetime::class
-        'editor_field' => App\Forms\Fields\EditorField::class
+        'editor_field' => App\Forms\Fields\EditorField::class,
+        'ajax_upload_image_field' => App\Forms\Fields\AjaxUploadImageField::class
     ]
 ];

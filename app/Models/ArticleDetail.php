@@ -18,4 +18,7 @@ class ArticleDetail extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['contents'];
+
+
 }

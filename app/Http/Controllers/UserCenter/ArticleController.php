@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\ArticleSearchModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Kris\LaravelFormBuilder\FormBuilder;
 
 class ArticleController extends BaseUserController
@@ -29,6 +30,9 @@ class ArticleController extends BaseUserController
      */
     public function create(FormBuilder $formBuild, Request $request){
 
+
+
+
         $article = new Article();
         if ($request->method() == 'POST') {
 
@@ -45,11 +49,24 @@ class ArticleController extends BaseUserController
             }
         } else {
 
+            $article = $request->get('id') ? Article::find($request->get('id')) : null;
             $form = $formBuild->create(ArticleForm::class, [
                 'method' => 'post',
                 'url' => route('user-article-create'),
-                'model' => $request->get('id') ? Article::find($request->get('id')) : null
+                'model' => $article
             ]);
+            echo $article->user_id;
+
+            $user = \Auth::user();
+
+            $cate = Gate::forUser($user)->allows('update-article', $article);
+            dump($cate);
+            dump(Gate::forUser($user));
+
+
+
+            $rs = $user->can('update', $article);
+            dump($rs);
         }
         //return self::getXhyView();
         return self::getXhyView(['article' => $article, 'form' => $form]);

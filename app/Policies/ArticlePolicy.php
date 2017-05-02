@@ -14,10 +14,10 @@ class ArticlePolicy
 
     public function before(User $user, $ability){
 
-        if($user->isAdmin())
-            return true;
-        else
-            return false;
+//        if($user->isAdmin())
+//            return true;
+//        else
+//            return false;
     }
 
     /**
@@ -59,6 +59,7 @@ class ArticlePolicy
     public function update(User $user, Article $article)
     {
         //
+
         return $user->id == $article->user_id;
     }
 

@@ -48,7 +48,7 @@ class Article extends Model
 
     public $timestamps = true;
 
-    public $fillable = ['title', 'author', 'user_id', 'thumb'];
+    public $fillable = ['title', 'author', 'user_id', 'thumb', 'from_host', 'type_id'];
 
     public function createOrEdit(Request $request) {
 
@@ -123,7 +123,9 @@ class Article extends Model
         $article->title = $request->get('title');
         $article->thumb = $request->get('thumb');
         $article->author = '5';
-        $article->user_id = \Auth::id();
+        $article->user_id = \Auth::id() ? \Auth::id() : ($request->has('user_id') ? $request->get('user_id') : 0);
+        $article->from_host = $request->get('from_host', '');
+        $article->type_id = $request->get('type_id',0);
     }
 
     public function save(array $options = [])

@@ -23,14 +23,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Validator;
+use GuzzleHttp;
 
 //class IndexController extends BaseController
 class IndexController extends Controller
 {
     
-	public function index(){
+	public function index(Request $request){
+
+	    $http = new GuzzleHttp\Client();
+
+        $accessToken = 'K1hgw2ZMxsDHMGyoBbQVKtdVydFA8zilCaRphzTmArpjEw47HCGd6tkGy0E2';
+
+//        $response = $http->request('GET', 'http://laravel.54.com/api/user', [
+//            'Accept' => 'application/json',
+//            'Authorization' => 'Bearer '.$accessToken,
+//        ]);
+
+        $url = 'http://laravel.54.com/api/user';
+        $api_token = $accessToken;
+        $guzzle = new GuzzleHttp\Client();
+        $response = $guzzle->request('get', $url, ['api_token' => $api_token]);
 
 
+
+//        echo json_decode( (string)$response->getBody(), true );
+//exit;
 		//Log::info("test");
 		//Log::error("error",['name'=>"jack"]);
 
@@ -60,17 +78,17 @@ class IndexController extends Controller
 
 		//\App::setLocale('zh');
         //echo 33;exit;
-        $model01 = ArticleSpiderModel::getSingle("http://6846041.blog.51cto.com/6836041/1439443");
-        $content01 = $model01->getContents();
-        $model = ArticleSpiderModel::getSingle("http://laravel.54/home");
-        $body = $model->getContents();
-        $rs2 = $model->statusCode;
-        echo $rs2;
-        echo $body;
-        echo iconv('gbk', 'utf-8',  $content01);
+        //$model01 = ArticleSpiderModel::getSingle("http://6846041.blog.51cto.com/6836041/1439443");
+        //$content01 = $model01->getContents();
+        //$model = ArticleSpiderModel::getSingle("http://laravel.54/home");
+        //$body = $model->getContents();
+//        $rs2 = $model->statusCode;
+//        echo $rs2;
+//        echo $body;
+//        echo iconv('gbk', 'utf-8',  $content01);
 		return view('index');
 
-		$articles = Article::all()->where('id', '>', 0)->take(3);
+		/*$articles = Article::all()->where('id', '>', 0)->take(3);
 
 		$articles->reject(function($model) {
 			print_r($model);
@@ -97,7 +115,7 @@ class IndexController extends Controller
 		foreach( Article::where('id', '>', 0)->cursor() as  $article) {
 			print_r($article);
 			echo "<hr/>";
-		}
+		}*/
 	}
 
 	public function route(Request $request){
@@ -153,6 +171,7 @@ class IndexController extends Controller
 
     public function test(){
 
+        echo 33;exit;
 		if(App::environment('local')) {
 			echo 'is local';
 		} else if(App::environment('develop')){

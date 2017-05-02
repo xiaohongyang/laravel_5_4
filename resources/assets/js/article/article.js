@@ -1,4 +1,4 @@
-const app2 = new Vue({
+/*const app2 = new Vue({
     el: '#layout-content',
     data : {
         messageaa : 'hello, test Message!321'
@@ -16,25 +16,30 @@ const app2 = new Vue({
             this.messageaa = this.messageaa.split('').reverse().join('');
         }
     }
-});
+});*/
 
-const appList = new Vue({
-    el : '#list',
-    methods : {
-        getList : _.debounce(function () {
+var appList = new window.Vue({
+    el : '#layout-content',
+    methods: {
+        checkOrCancelAll: function (message) {
 
-            axios.get('/')
-                .then(function (response) {
-                    console.log(response)
+            if (event.target.checked) {
+                $('.selectArticle').each(function(){
+                    if(!$(this).checked) {
+                        $(this).prop("checked", true);
+                    }
                 })
-                .catch(function (error) {
-                    console.log(error)
+            } else {
+                $('.selectArticle').each(function(){
+                    if($(this)[0].checked) {
+                        $(this).trigger('click')
+                    }
                 })
+            }
 
-        },500)
-    },
-    created : function() {
-
-        this.getList()
-    }
+        }
+    }       
 })
+
+
+  

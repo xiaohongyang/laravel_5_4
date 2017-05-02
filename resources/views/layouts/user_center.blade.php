@@ -1,4 +1,3 @@
-{{--@push('scripts', '<script src="/js/app.js"></script>')--}}
 <html>
 <html lang="en">
 <head>

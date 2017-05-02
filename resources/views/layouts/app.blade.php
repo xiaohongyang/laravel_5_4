@@ -1,4 +1,3 @@
-@push('scripts', '<script src="/js/app.js"></script>')
 <html>
 <html lang="en">
 <head>
@@ -25,6 +24,9 @@
 </head>
 <body>
     <div id="app">
+
+
+
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -91,16 +93,21 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" id="layout-app">
                     @yield('content')
                 </div>
             </div>
         </div>
     </div>
 
-    {{--<script src="{{mix('/js/app.js')}}"></script>--}}
+
+    <script src="{{mix('/js/app.js')}}"></script>3344
     <!--include socket.io.js-->
-    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+    {{--<script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>--}}
+
+
+
+
     @stack('scripts')
 
 </body>

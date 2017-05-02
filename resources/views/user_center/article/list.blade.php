@@ -4,6 +4,7 @@
 
     @include('shared.message')
 
+
     <div id="list">
 
         <div id="" class="text-right">
@@ -13,6 +14,7 @@
         <table class="table table-bordered table-striped">
 
             <tr>
+                <td><input type="checkbox" class="checlAll" v-on:click="checkOrCancelAll()"  ></td>
                 <td>title</td>
                 <td>author</td>
                 <td>desc</td>
@@ -20,10 +22,12 @@
                 <td>opration</td>
             </tr>
 
+
             @foreach( $articleList as $article)
                 <tr>
+                    <td><input class="selectArticle" type="checkbox" value="{{ $article->id }}"></td>
                     <td>{{ $article->title }}</td>
-                    <td>{{ $article->authorUser->name}}</td>
+                    <td>{{ $article->author}}</td>
                     <td></td>
                     <td>{{ date('Y-m-d H:i', $article->updated_at->getTimestamp()) }}</td>
                     <td>
@@ -41,6 +45,7 @@
 
         {{ $articleList->links() }}
     </div>
+
 @endsection
 
 @section('scripts')

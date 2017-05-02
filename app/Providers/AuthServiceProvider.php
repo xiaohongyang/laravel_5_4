@@ -33,11 +33,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+//        Gate::define('update-article', function ($user, $article){
+//            return $user->id == $article->user_id;
+//        });
         //Passport
+
         Passport::routes();
+
+        //
+        Passport::enableImplicitGrant();
+
         // Set Token Expire
         Passport::tokensExpireIn(Carbon::now()->addDay(15));
         // Refresh Token
         Passport::refreshTokensExpireIn(Carbon::now()->addDay(30));
+
+
     }
 }

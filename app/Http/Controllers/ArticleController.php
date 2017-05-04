@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\F
 class ArticleController extends Controller
 {
     //
@@ -24,7 +23,7 @@ class ArticleController extends Controller
 
     public function index(Request $request){
 
-        $articleList = $this->article->getList();
+        /*$articleList = $this->article->getList();
 
         if (\Gate::allows('list', Article::class)) {
 
@@ -34,7 +33,8 @@ class ArticleController extends Controller
             ])->with('name', 'JackXiao');
         } else {
             return view('403');
-        }
+        }*/
+        return view ('article.index');
 
     }
 

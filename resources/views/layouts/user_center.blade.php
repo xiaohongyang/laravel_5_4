@@ -123,7 +123,7 @@
 
 <script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ mix('js/site.js') }}"></script>
-@stack('scripts')
+
 
 @yield('scripts')
 

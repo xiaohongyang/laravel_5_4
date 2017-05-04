@@ -117,6 +117,11 @@ Route::get('index', 'IndexController@index');
 
 #endregion
 
+#region 前端文章展示
+    Route::get('articles', 'ArticleController@index');
+    Route::get('article/{id}', 'ArticleController@item');
+#endregion
+
 #region 文章管理
 
     Route::group(['middleware' => 'auth'], function () {

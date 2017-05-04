@@ -110,8 +110,8 @@ const app = new Vue({
         }
 });
 
-axios.get('/oauth/clients')
-    .then(function(response){
-        console.log(response.data)
-    })
+// axios.get('/oauth/clients')
+//     .then(function(response){
+//         console.log(response.data)
+//     })
 

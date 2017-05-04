@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Scopes\AuthorScope;
 use App\Observer\ArticleObserver;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use App\Events\ArticleReleased;
 use League\Flysystem\Exception;
@@ -196,8 +198,31 @@ class Article extends Model
         return $this->forceDelete();
     }
 
-    public function getList(){
-        return $this->all()->sortByDesc('created_at');
+    public function getList(Request $request){
+
+        $currentPage = $request->get('page', 1);
+        $perPage = $request->get('perPage', 10);
+        $offset = ($currentPage-1) * $perPage;
+
+        //DB::enableQueryLog();
+
+        $items = self::orderBy('id', 'desc')
+            ->offset($offset)
+            ->limit($perPage)
+            ->get();
+
+        //dd(DB::getQueryLog());
+        $pagination = new Paginator($items, $perPage, $currentPage);
+        foreach ($items as &$item){
+            $tags = $item->tags()->get();
+            $tagItems = [];
+            foreach ($tags as $tag){
+                if(!is_null($tag->tag))
+                    $tagItems[] = $tag->tag->toArray();
+            }
+            $item['tags'] = $tagItems;
+        }
+        return $pagination;
     }
 
 

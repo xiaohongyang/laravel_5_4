@@ -1,62 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-{{ $name }}
 
-{{ $currentDate }}
-<br/>
-Article's count: {{ $count }}
-
-<form action="{{ route('article.store') }}" method="post">
-    {{ csrf_field() }}
-    {{ method_field("POST") }}
-    <table>
-        <tr>
-            <td>title</td>
-            <td><input type="text" name="title"/></td>
-            <td>{{$errors->has('title') ? $errors->get('title')[0] : ''}}</td>
-        </tr>
-        <tr>
-            <td>author</td>
-            <td><input type="text" name="author"/></td>
-            <td>{{$errors->has('author') ? $errors->get('author')[0] : ''}}</td>
-
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="submit">
-            </td>
-        </tr>
-    </table>
-</form>
-
-{{session('msg')}}
-<br/>
 
 @include("shared.errors")
 
-<table>
-    <tr>
-        <td>title:</td>
-        <td>author:</td>
-        <td>created_at:</td>
-    </tr>
-    @foreach($articleList as $article)
-        <tr>
-            <td>
-                {{$article->title}}
-            </td>
+    <div class="article-wrap" v-for="article in articleList"  >
 
-            <td>
-                {{$article->author}}
-            </td>
+        <div class="title">
+            @{{article.title}}
+        </div>
+        <div class="desc"> @{{ article.description }}</div>
+        <div class="about">
+            <span class="tags">
+                tags: <a href="#" v-for="tag in article.tags"> @{{ tag.name }} </a>
+            </span>
+            <span class="create-time">@{{ article.created_at }}</span>
+            <span class="post-number">@{{ article.created_at }}</span>
 
-            <td>
-                {{ $article->created_at }}
-                @dtime(time())
-            </td>
-        </tr>
-    @endforeach
-</table>
+        </div>
+    </div>
 
+    <div class="pagination" >
+
+        <button class="btn btn-xs btn-success" v-on:click="goPrevPage"  v-if="pagination.prevPage" >上一页@{{pagination.prevPage}}@{{pagination.currentPage}}</button>
+        <button class="btn btn-xs btn-success" v-on:click="goPrevPage"  v-if="!pagination.prevPage"  disabled>上一页</button>
+        <button class="btn btn-xs btn-success" v-on:click="goNextPage" v-if="pagination.nextPage">下一页</button>
+        <button class="btn btn-xs btn-success" v-on:click="goNextPage" v-if="!pagination.nextPage" disabled>下一页</button>
+    </div>
+
+@endsection
+
+
+@section('scripts')
+    {{ Html::script(mix('js/article/article.js')) }}
 @endsection

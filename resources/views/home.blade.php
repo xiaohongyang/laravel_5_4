@@ -8,6 +8,15 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
+
+                    <nav>
+                        <ul>
+                            <li><a href="{{route('article.index')}}">文章管理</a></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </nav>
+
                     <?php
                     use Carbon\Carbon;if(!cache('uid4Hee')){
                             dump("uid4Hee not exist!");

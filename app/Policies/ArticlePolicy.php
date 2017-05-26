@@ -16,8 +16,7 @@ class ArticlePolicy
 
         if($user->isAdmin())
             return true;
-        else
-            return false;
+
     }
 
     /**
@@ -37,6 +36,7 @@ class ArticlePolicy
 
         return Auth::user();
     }
+
 
     /**
      * Determine whether the user can create appModelArticles.
@@ -75,6 +75,7 @@ class ArticlePolicy
     }
 
     public function listAll(User $user){
+
         return $user->isAdmin();
     }
 }

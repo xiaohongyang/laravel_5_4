@@ -1,18 +1,15 @@
 {
-	"authHost": "http://laravel.54",
+	"authHost": "laravel.54.com",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [
 		{
-			"appId": "195341db4841946b",
-			"key": "246ac5ba0a757a998944d0a0ecba19ec"
+			"appId": "a3c0cc52d99f8dee",
+			"key": "7c2a572a8d8cda11efd23da8e95460a0"
 		}
 	],
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {
-			"host" : "laravel.54",
-			"port" : "6379"
-		},
+		"redis": {},
 		"sqlite": {
 			"databasePath": "/database/laravel-echo-server.sqlite"
 		}

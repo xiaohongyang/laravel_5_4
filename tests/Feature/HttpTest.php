@@ -32,7 +32,7 @@ class HttpTest extends TestCase
     public function testExample()
     {
         //$this->assertTrue(true);
-        $response = $this->get('http://laravel.54.com/home');
+        $response = $this->get(''. env('APP_URL') .'/home');
 
         $response->assertSee('Login');
     }

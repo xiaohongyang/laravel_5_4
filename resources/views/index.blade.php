@@ -30,5 +30,5 @@ use Illuminate\Support\Facades\URL;
 @endsection
 
 @section('scripts')
-    {{ Html::script(mix('js/app.js')) }}
+   <script src="{{ mix('js/index/index.js') }}"></script>
 @endsection

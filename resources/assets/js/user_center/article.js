@@ -19,7 +19,7 @@
 });*/
 
 var appList = new window.Vue({
-    el : '#layout-content',
+    el : '#layout-app',
     methods: {
         checkOrCancelAll: function (message) {
 

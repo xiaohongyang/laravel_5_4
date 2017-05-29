@@ -93,7 +93,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-sm-12" id="layout-content">
+                <div class="col-sm-12" id="layout-app">
                     @yield('content')
                 </div>
             </div>
@@ -102,9 +102,11 @@
 
 
     <script src="{{ mix('js/app.js') }}"></script>
+    
+
     <script src="{{ mix('js/site.js') }}"></script>
     <!--include socket.io.js-->
-    {{--<script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>--}}
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 
 
 

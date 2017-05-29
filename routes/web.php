@@ -7,8 +7,8 @@ Route::resource('photos', 'PhotoController');
 
 Route::get('redirect', function (){
     $query = http_build_query([
-        'client_id' => '14',
-        'redirect_uri' => env('APP_URL') .'/callback',
+        'client_id' => '1',
+        'redirect_uri' => 'http://laravel.54.com/articles',
         'response_type' => 'code',
         'scope' => '',
     ]);
@@ -16,19 +16,43 @@ Route::get('redirect', function (){
     return redirect('/oauth/authorize?' . $query);
 });
 
+
+Route::get('redirect_home', function (){
+
+    $query = http_build_query([
+        'client_id' => '2',
+        'redirect_uri' => 'http://laravel.54.com/home',
+        'response_type' => 'code',
+        'scope' => '',
+    ]);
+
+    return redirect('/oauth/authorize?' . $query);
+});
+
+Route::get('redirect_callback', function(){
+    $query = http_build_query([
+        'client_id' =>5,
+        'redirect_uri' =>  env('APP_URL') . '/callback',
+        'response_type' => 'code',
+        'scope' => ''
+    ]);
+
+    return redirect('/oauth/authorize?' . $query);
+});
+
+
+
 Route::get('callback', function (\Illuminate\Http\Request $request){
     $http = new GuzzleHttp\Client();
     $response = $http->post(env('APP_URL') .'/oauth/token', [
         'form_params' => [
             'grant_type' => 'authorization_code',
-            'client_id' => '14',
-            'client_secret' => 'HscsLczaEoDzgQkXhvBrA0odBWlRyJyILF9DkoSQ',
+            'client_id' => '5',
+            'client_secret' => 'apB4YXuByCDOKlYzkrOvcQ4kogD0fmX7ON3XZdRz',
             'redirect_uri' => env('APP_URL') .'/callback',
             'code' => $request->code
-
         ]
     ]);
-
     return json_decode( (string)$response->getBody(), true);
 });
 
@@ -40,11 +64,12 @@ Route::get('refreshToken', function(){
 //    dump($user->refresh_token);exit;
 
     $http = new GuzzleHttp\Client();
+
     $response = $http->post(env('APP_URL') .'/oauth/token', [
         'form_params' => [
             'grant_type' => 'refresh_token',
             'refresh_token' => '0litnDIrJdTLOH337wjMwU\/izJpiaUIl1UkzvHarOHqFIowdrvW1QlafGbDqxJsUJykfUowk80QbpqRsW7qNQvkqKekb92q6HYpJNP58hcGdj2KJkM3ZzMv8m006vMCsSbpvScYAT+NAmspuM\/feGE7Y+mtd+wPcINeZGJMxw7atqrlk+ulUsdoPOb+8Paa0CXgAzFB\/MjjfHV3nEHwFDL3qd3yhL0ZY0rCteRut4l9ATRUdtf8hGJoFR8peQDwRP5Chqtf4ISYfyl6HnDC6ziEScWeE327uDcr\/D\/ACrL+44T6CJ1q3alDEfLUo5lc1ob07yKobxPbWt2Mse9sPKUC1+T6owMjsBTBGNL5nddRazX0i\/5jh+N3jx0zizOOzNqe+JJZaK9VmZPBm0Ku4Y6Dd\/kMygCpIuAuD7gaQVWiZpBl3a98ZK2XwJ5hTN793jicn1daXsuVV4bypdC6pwRf55LEXUNAx948cgzzfYx6PFrppRoi7hvq6AiD09DcyBA51Urjy2d8UrtYS6W8HeTyNHvGoMQXCXbjuDT+jHtEGFpWIjSSCpr+QvWLD9xHXYkfx+8STsljr0rEejsIRr1DodmQASmob6iX2HA9XNHy76ykYv74JCJ2paiOLGsWm\/C3Qom7ZLZQ5rck10XQ+qZnWMaOjFEJVoDuCpcKnOVg=',
-            'client_id' => 14,
+            'client_id' => 2,
             'client_secret' => 'HscsLczaEoDzgQkXhvBrA0odBWlRyJyILF9DkoSQ',
             'scope' => ''
         ]
@@ -55,17 +80,18 @@ Route::get('refreshToken', function(){
 
 Route::get('passwordToken', function(Request $request){
 
-    $user = \App\User::where('email', '2447391779@qq.com')->first();
+    $user = \App\User::where('email', 'JackXiao@qq.com')->first();
+    // echo $user->email;exit;
 
     $http = new GuzzleHttp\Client();
     $response = $http->post(env('APP_URL') .'/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
-            'client_id' => '27',
-            'client_secret' => '672magxcDiF6cg4eAxFLzu7XSEr3ADrk7sz7dX7T',
+            'client_id' => '4',
+            'client_secret' => 'i6i31BdeIcPCErfcyCt2HteXZPrtcADlSLhFYDYt',
             'username' => $user->email,
-            'password' => 'abcabc',
-            'scope' => '*',
+            'password' => '321321',
+            'scope' => '',
         ],
     ]);
 
@@ -100,12 +126,12 @@ Route::get('clientCredentialsGrantToken', function(){
 });
 
 Route::get('personalAccessToken', function(){
-    $user = \App\User::where('id', 4)->first();
+    $user = \App\User::where('id', 2)->first();
 //    $token = $user->createToken('xhy_personal_access_client')->accessToken;
 //    dump($token);
 //
 //    exit;
-    $token = $user->createToken('3333')->accessToken;
+    $token = $user->createToken('laravel.54.com')->accessToken;
     dump($token);
 });
 
@@ -113,7 +139,7 @@ Route::get('/', 'IndexController@index');
 Route::get('index', 'IndexController@index');
 #region UserCenter
 
-    Route::get('/home', 'UserCenter\UserCenterController@index')->name('home');
+    Route::get('/home', 'UserCenter\UserCenterController@index')->name('home')->middleware(['auth']);
 
 #endregion
 

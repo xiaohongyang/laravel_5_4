@@ -40,10 +40,16 @@ class IndexController extends Controller
 //            'Authorization' => 'Bearer '.$accessToken,
 //        ]);
 
-        $url = env('APP_URL') .'/api/user';
-        $api_token = $accessToken;
-        $guzzle = new GuzzleHttp\Client();
-        $response = $guzzle->request('get', $url, ['api_token' => $api_token]);
+        try {
+        	/*$url = env('APP_URL') .'/home';
+        	$api_token = $accessToken;
+        	$guzzle = new GuzzleHttp\Client();
+        	$response = $guzzle->request('get', $url, ['api_token' => $api_token]);	*/
+        } catch (Exception $e) {
+        	
+        	print_r($e->getMessage());
+        }
+        
 
 
 

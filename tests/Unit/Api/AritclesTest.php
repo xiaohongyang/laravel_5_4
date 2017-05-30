@@ -13,16 +13,12 @@ class AritclesTest extends TestCase
 
     public function testIndex(){
 
-        $user = \Auth::loginUsingId(2);
-//        $user = User::where('id', 2)->first();
         $token = $this->getToken();
 
-        die($token);
-
-        $response = $this->actingAs($user)->call('get', 'api/articles', [], [], [],
-            ['HTTP_Authorization' => 'Bearer ' . $token]);
-
-        die($response->getContent());
+        $rs = $this->json('get', '/api/articles', [], ['HTTP_Authorization' => 'Bearer ' . $token]);
+        $rs->assertSeeText('per_page');
+        $rs->assertSeeText('data');
+        $rs->assertStatus(200);
     }
 
     protected function getToken(){

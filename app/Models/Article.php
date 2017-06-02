@@ -23,6 +23,8 @@ class Article extends Model
 
     protected $table = 'articles';
 
+
+
     //
     protected static function boot()
     {
@@ -39,9 +41,6 @@ class Article extends Model
 
     }
 
-
-
-
     use SoftDeletes;
 
     protected $primaryKey = 'id';
@@ -51,6 +50,10 @@ class Article extends Model
     public $timestamps = true;
 
     public $fillable = ['title', 'author', 'user_id', 'thumb', 'from_host', 'type_id'];
+
+    protected $attributes = [
+        'thumb' => ''
+    ];
 
     public function createOrEdit(Request $request) {
 
@@ -67,11 +70,14 @@ class Article extends Model
         $result = $article->save();
 
         $articleDetail = new ArticleDetail();
-        $articleDetail->contents = $request->get('contents');
 
         if ($result) {
             //保存detail关联表
-            $article->detail() ->save($articleDetail);
+            $contents = $request->get('contents');
+            if (!is_null($contents)) {
+                $articleDetail->contents = $contents;
+                $article->detail() ->save($articleDetail);
+            }
 
             //保存标签
             $tags = $request->get('tags');
@@ -123,7 +129,7 @@ class Article extends Model
     private function _handle(&$article, Request $request) {
 
         $article->title = $request->get('title');
-        $article->thumb = $request->get('thumb');
+        $article->thumb = $request->get('thumb','');
         $article->author = '5';
         $article->user_id = \Auth::id() ? \Auth::id() : ($request->has('user_id') ? $request->get('user_id') : 0);
         $article->from_host = $request->get('from_host', '');

@@ -8,7 +8,7 @@ Route::resource('photos', 'PhotoController');
 Route::get('redirect', function (){
     $query = http_build_query([
         'client_id' => '1',
-        'redirect_uri' => 'http://laravel.54.com/articles',
+        'redirect_uri' => env('APP_URL') .'/articles',
         'response_type' => 'code',
         'scope' => '',
     ]);
@@ -21,7 +21,7 @@ Route::get('redirect_home', function (){
 
     $query = http_build_query([
         'client_id' => '1',
-        'redirect_uri' => 'http://laravel.54.com/home',
+        'redirect_uri' => env('APP_URL') .'/home',
         'response_type' => 'code',
         'scope' => '',
     ]);

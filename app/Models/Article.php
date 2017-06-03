@@ -90,6 +90,8 @@ class Article extends Model
                     $relation->create($article, $tag);
                 }
             }
+
+            $result = $article->id;
         }
         return $result;
     }

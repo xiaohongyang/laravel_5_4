@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Event;
 
 
 class ArticleController extends Controller
@@ -57,7 +58,8 @@ class ArticleController extends Controller
 
         $result = [
             'status' => 0,
-            'message' => []
+            'message' => [],
+            'id' => 0
         ];
 
         try {
@@ -71,6 +73,7 @@ class ArticleController extends Controller
                 $article = new Article();
                 $request->merge(['user_id' => \Auth::guard('api')->id()]);
                 $rs = $article->createOrEdit($request);
+                $result['id'] = $rs;
                 $result['status'] = $rs ? 1 : 0;
             }
         } catch (ValidationException $e) {
@@ -134,5 +137,23 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+        $result = [
+            'status' => 0, 'message' => '删除失败!'
+        ];
+        if(!is_null($id)) {
+            $id = intval($id);
+        }
+        if(!is_int($id) || $id <= 0) {
+
+            $this->message = 'id参数错误,必须为大于0的整数';
+        }else {
+            $rs = Article::destroy($id);
+            if ($rs) {
+                $result['status'] = 1;
+                $result['message'] = '删除成功';
+            }
+        }
+
+        return $result;
     }
 }

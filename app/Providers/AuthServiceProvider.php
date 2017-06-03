@@ -44,9 +44,9 @@ class AuthServiceProvider extends ServiceProvider
         Passport::enableImplicitGrant();
 
         // Set Token Expire
-        Passport::tokensExpireIn(Carbon::now()->addMinute(3));
+        Passport::tokensExpireIn(Carbon::now()->addDays(6));
         // Refresh Token
-        Passport::refreshTokensExpireIn(Carbon::now()->addMinute(3));
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(6));
 
 
     }

@@ -1,5 +1,5 @@
 {
-	"authHost": "laravel.54.com:5000",
+	"authHost": "laravel.54.com",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",

@@ -2,12 +2,17 @@
 
 namespace Tests\Unit\Api;
 
+use App\Events\ArticleDestroyed;
+use App\Jobs\TestJob;
+use App\Models\Article;
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
 use Illuminate\Http\Request;
 use Tests\Unit\BaseUnit;
+use App\Jobs\ProcessPodcast;
 class ArticlesTest extends BaseUnit
 {
 
@@ -35,6 +40,12 @@ class ArticlesTest extends BaseUnit
     }
 
     public function testDestroy(){
+
+        //$article = Article::find(28);
+        //event(new ArticleDestroyed($article));
+        $user = User::find(2);
+        dispatch((new TestJob($user))->onConnection('redis')->delay(Carbon::now()->addSecond(30)));
+        die(" \r \n end");
 
         //创建文章并获取id
         $newArticle = $this->testStore();

@@ -219,3 +219,13 @@ Route::post('/create', function(\Illuminate\Http\Request $request){
     var_dump($result);
 });
 
+
+
+Route::get('queue_test', function(\Illuminate\Http\Request $request){
+
+    $id = $request->get('id');
+    $user = \App\User::find($id);
+    $job = (new \App\Jobs\TestJob($user));
+
+    \dispatch($job->onConnection('redis')->delay(\Carbon\Carbon::now()->addSeconds(30)));
+});

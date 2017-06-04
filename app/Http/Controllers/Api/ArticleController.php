@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ArticleDestroyed;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -147,10 +148,19 @@ class ArticleController extends Controller
 
             $this->message = 'id参数错误,必须为大于0的整数';
         }else {
-            $rs = Article::destroy($id);
-            if ($rs) {
-                $result['status'] = 1;
-                $result['message'] = '删除成功';
+
+            try {
+                $article = Article::find($id);
+                if ($article) {
+                    $rs = $article->delete();
+                    if ($rs) {
+                        $result['status'] = 1;
+                        $result['message'] = '删除成功';
+                        event(new ArticleDestroyed($article));
+                    }
+                }
+            } catch (Exception $e) {
+                \Log::info('delete faied :' , $e);
             }
         }
 

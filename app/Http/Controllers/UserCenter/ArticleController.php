@@ -55,18 +55,16 @@ class ArticleController extends BaseUserController
                 'url' => route('user-article-create'),
                 'model' => $article
             ]);
-            echo $article->user_id;
 
             $user = \Auth::user();
 
             $cate = Gate::forUser($user)->allows('update-article', $article);
-            dump($cate);
-            dump(Gate::forUser($user));
-
+            //dump($cate);
+            //dump(Gate::forUser($user));
 
 
             $rs = $user->can('update', $article);
-            dump($rs);
+            //dump($rs);
         }
         //return self::getXhyView();
         return self::getXhyView(['article' => $article, 'form' => $form]);

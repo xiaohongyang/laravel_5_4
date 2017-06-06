@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-$middleWare = [];
-//$middleWare = ['middleware' => ['auth:api']];
+//$middleWare = ['middleware' => []];
+$middleWare = ['middleware' => ['auth:api']];
 
 
 Route::group( $middleWare, function(){

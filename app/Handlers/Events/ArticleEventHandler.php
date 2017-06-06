@@ -7,6 +7,7 @@
  */
 
 namespace App\Handlers\Events;
+use App\Events\ArticleDestroyed;
 use Illuminate\Events\Dispatcher;
 
 
@@ -19,6 +20,10 @@ class ArticleEventHandler
      */
     public function onArticleReleased($event) {
         print_r("文章发布事件订阅!!");
+    }
+
+    public function onArticleDestroyed(ArticleDestroyed $event){
+        Log($event->article->id . 'destroyed');
     }
 
     public function subscribe(Dispatcher $events) {

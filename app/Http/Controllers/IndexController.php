@@ -35,15 +35,21 @@ class IndexController extends Controller
 
         $accessToken = 'K1hgw2ZMxsDHMGyoBbQVKtdVydFA8zilCaRphzTmArpjEw47HCGd6tkGy0E2';
 
-//        $response = $http->request('GET', 'http://laravel.54.com/api/user', [
+//        $response = $http->request('GET',  env('APP_URL') .'/api/user', [
 //            'Accept' => 'application/json',
 //            'Authorization' => 'Bearer '.$accessToken,
 //        ]);
 
-        $url = 'http://laravel.54.com/api/user';
-        $api_token = $accessToken;
-        $guzzle = new GuzzleHttp\Client();
-        $response = $guzzle->request('get', $url, ['api_token' => $api_token]);
+        try {
+        	/*$url = env('APP_URL') .'/home';
+        	$api_token = $accessToken;
+        	$guzzle = new GuzzleHttp\Client();
+        	$response = $guzzle->request('get', $url, ['api_token' => $api_token]);	*/
+        } catch (Exception $e) {
+        	
+        	print_r($e->getMessage());
+        }
+        
 
 
 

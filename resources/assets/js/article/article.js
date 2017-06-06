@@ -78,8 +78,8 @@ var appList = new window.Vue({
                     console.log(response)
                     this.clientResponse = response
                     if (response.status == 200){
-                        t.articleList = response.data.data
-                        t.pagination.update(response.data.current_page)
+                        t.articleList = response.data.data.data
+                        t.pagination.update(response.data.data.current_page)
                     }
                     else
                         t.articleList = {}

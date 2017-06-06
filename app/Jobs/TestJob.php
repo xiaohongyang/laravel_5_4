@@ -49,4 +49,11 @@ class TestJob implements ShouldQueue
             echo 'Test Job Failed';
         }
     }
+
+    public function fail($exception = null)
+    {
+        \Log::info($exception);
+    }
+
+
 }

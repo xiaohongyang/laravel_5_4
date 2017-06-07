@@ -132,7 +132,7 @@ Route::get('getToken', function(\Illuminate\Http\Request $request){
         'token' => ''
     ];
     $key = $request->get('key');
-    if($key == env('APP_KEY')) {
+    if($key == md5(env('APP_KEY'))) {
         $user = \App\User::where('id', env('TEST_USER_ID'))->first();
         $token = $user->createToken(env('APP_URL'))->accessToken;
         $data = [

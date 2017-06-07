@@ -98,6 +98,7 @@ class ArticleController extends Controller
         //
         $result = ['status' => 0, 'message'=>'文章不存在'];
         $article = Article::findOrFail($id);
+        $article->detail = $article->detail->contents;
         if( $article ) {
             $result['status'] = 1;
             $result['data'] = $article;

@@ -20,10 +20,14 @@ class ArticlesTest extends BaseUnit
         $url = route('articles.index');
         $token = $this->getToken();
 
+
         $jsonReponse = $this->json('get', $url, [], ['HTTP_Authorization' => 'Bearer ' . $token]);
         $jsonReponse->assertStatus(200);
-        $jsonReponse->assertSeeText('"status":1');
-        $jsonReponse->assertSeeText('"per_page"');
+        \Log::info($jsonReponse->getContent());
+        //$jsonReponse->assertSeeText('"status":1');
+        //$jsonReponse->assertSeeText('"per_page"');
+        $jsonReponse->assertJson(["status"=>1]);
+        $jsonReponse->assertSee('per_page');
     }
 
     public function testStore(){

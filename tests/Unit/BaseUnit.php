@@ -15,10 +15,12 @@ class BaseUnit extends TestCase
 {
 
     protected function getToken(){
+        \Log::info('user:');
         try{
-            $key = env('APP_KEY');
+            $key = md5(env('APP_KEY'));
             $createToken = $this->call('get', '/getToken?key=' . $key);
             $user = $createToken->getContent();
+            \Log::info($user);
             $user = json_decode($user);
             return $user->token;
         } catch (\Exception $e) {

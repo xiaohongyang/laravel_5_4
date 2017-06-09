@@ -2,17 +2,10 @@
 
 namespace Tests\Unit\Api;
 
-use App\Events\ArticleDestroyed;
 use App\Jobs\TestJob;
-use App\Models\Article;
 use Carbon\Carbon;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
-use Illuminate\Http\Request;
 use Tests\Unit\BaseUnit;
-use App\Jobs\ProcessPodcast;
 class ArticlesTest extends BaseUnit
 {
 
@@ -63,7 +56,8 @@ class ArticlesTest extends BaseUnit
     }
 
     public function testShow(){
-        $url = route('articles.show',[3]);
+        $url = route('articles.show',1);
+        \Log::info($url);
         $response = $this->json('get', $url, [], ['HTTP_Authorization' => 'Bearer ' . $this->getToken()]);
         $response->assertStatus(200);
         $response->assertSeeText('"status":1');

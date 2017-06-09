@@ -5,6 +5,7 @@ Auth::routes();
 
 Route::resource('photos', 'PhotoController');
 
+#region oAuth2.0 token
 Route::get('redirect', function (){
     $query = http_build_query([
         'client_id' => '1',
@@ -134,7 +135,13 @@ Route::get('getToken', function(\Illuminate\Http\Request $request){
     $key = $request->get('key');
     if($key == md5(env('APP_KEY'))) {
         $user = \App\User::where('id', env('TEST_USER_ID'))->first();
-        $token = $user->createToken(env('APP_URL'))->accessToken;
+        $token = $user->createToken("http://laravel.54.com:5000")->accessToken;
+        $data = [
+            'status' => 200,
+            'token' => $token
+        ];
+    } else if(!Auth::guest()) {
+        $token = Auth::getUser()->createToken(env('APP_URL'))->accessToken;
         $data = [
             'status' => 200,
             'token' => $token
@@ -142,6 +149,7 @@ Route::get('getToken', function(\Illuminate\Http\Request $request){
     }
     return $data;
 });
+#endregion
 
 Route::get('/', 'IndexController@index');
 Route::get('index', 'IndexController@index');

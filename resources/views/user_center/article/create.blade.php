@@ -62,6 +62,9 @@
             formData.append('directory', directory);
             var data = formData;
             $.ajax({
+                beforeSend : function(xhy){
+                    xhy.setRequestHeader('Authorization', 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYwODFmMjVkZWU0ZjgzYjhiZTdlNmRlNjY3MjNjM2UyYWNmYjY2ZTlmNjRmMzA3NTA1ZjVlOWMyYTg3NWVmZDFiNGRlYzJlNDZhZWI1ODUyIn0.eyJhdWQiOiI1IiwianRpIjoiZjA4MWYyNWRlZTRmODNiOGJlN2U2ZGU2NjcyM2MzZTJhY2ZiNjZlOWY2NGYzMDc1MDVmNWU5YzJhODc1ZWZkMWI0ZGVjMmU0NmFlYjU4NTIiLCJpYXQiOjE0OTY3OTYyMTAsIm5iZiI6MTQ5Njc5NjIxMCwiZXhwIjoxNDk3MzE0NjEwLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.3OxI5f9DwdinVzBIV9XvF7jDIl50gFSVplnYnZRtAWpyP-cRabPt-0-cZmYpGBjl3P__y2v69bRXgaKsHv6lo3MkaCzSW6W_oq0EQjRIKT-OREXaBIPKRxu_vaneKIBaXU444NQnfYEqHTZ09h__wpL3jRsH3DsccidRex6o9tZ2m1nXkTEUnEjAQUkoiPGqh0M3JLTjLOHagWuWVkB5vweogoG1sFvf6CyEmUPjYY9qx31yYsXrlHxZGw7tpXLOypF-Ib-GCtpj8hIexPOVr9xFmnsXQVfOEkb9PYD13hcfrZKjvKGIh5h3jrtAC18i7jfSDBaOFjmGUl7ekxFx7sY573_26vopsiD-aAln2Gzoh8-d1vZR8_LdyvvwELiiBbpsC6vzSpO8g0QVEqTeMmJ0791tkLoPuLxpJ-rq68OgJURvLxrNvuTlZwV6xAfqi61K9EyL_pHf83k89kNRgYRz_2AdonU4i9w7p6w5qz0AjDFrgmvX-DjkeqT0KV8dbcZW9CO75W4jrkyGu40G0THJmUhPEryenRro4Kh_xDGqPLqwReP8Uzuh8XRX_hNd42JM41iU1A8APqvwQkKIUrIXwVTzYoB8qS7FWePqif3Lvdty9jKIp5QHm7-0Gja5zsJnL1zC5xm3Bgc2Yp5LjybfmJoFihcrfCGIj08qq98')
+                },
                 url : url,
                 data : formData,
                 type : 'post',

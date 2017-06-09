@@ -1,7 +1,6 @@
 <?php
 $options['value'] = $options['value'] ? $options['value'] : old($name);
-$src = $options['value']
-        ? \App\Http\Helpers\HostHelper::getImage($options['value']) : \App\Http\Helpers\HostHelper::getImage('static/img/icon_upload.png');
+$src = \App\Http\Helpers\HostHelper::getImage($options['value']);
 
 $labelText = '';
 switch ($name) {
@@ -20,7 +19,7 @@ switch ($name) {
     <br/>
 
     <input type="file" data-id=""
-           data-url="{{ route('douploadimage') }}"
+           data-url="{{ route('upload_image') }}"
            data-directory = "{{ env('ARTICLE_THUMB_FILE_PATH') }}"
            data-show-img = true
            class="ajax_upload"

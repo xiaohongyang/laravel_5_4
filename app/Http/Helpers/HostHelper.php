@@ -13,6 +13,9 @@ class HostHelper
 {
 
     public static function getImage($img) {
+
+        $img = is_null($img) || !strlen(trim($img)) ? 'static/img/icon_upload.png' : $img;
+
         return env('APP_IMG_URL') . DIRECTORY_SEPARATOR . $img;
     }
 

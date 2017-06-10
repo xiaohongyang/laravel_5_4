@@ -19,9 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //$middleWare = ['middleware' => []];
-$middleWare = ['middleware' => ['auth:api']];
+$groupConfig = ['middleware' => ['auth:api']];
 
 
-Route::group( $middleWare, function(){
+Route::group( $groupConfig, function(){
+
     Route::resource('articles', 'Api\ArticleController');
+
+    Route::post('upload_image', 'Api\ImageController@upload')->name('upload_image');
 });
+
+
+

@@ -18,10 +18,6 @@
     }
 });*/
 
-
-Vue.component('xhy-hello', require("../articles/article-list.vue"))
-
-
 var appList = new window.Vue({
     t : this,
     el : '#app',

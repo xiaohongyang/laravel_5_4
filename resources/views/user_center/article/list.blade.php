@@ -4,7 +4,7 @@
 
     @include('shared.message')
 
-
+    <xhy-hello></xhy-hello>
     <div id="list">
 
         <div id="" class="text-right">

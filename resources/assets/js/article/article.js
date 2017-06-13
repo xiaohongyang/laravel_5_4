@@ -18,9 +18,13 @@
     }
 });*/
 
+
+Vue.component('xhy-hello', require("../articles/article-list.vue"))
+
+
 var appList = new window.Vue({
     t : this,
-    el : '#layout-app',
+    el : '#app',
     data : {
         accessToken : '',
         articleList : {},

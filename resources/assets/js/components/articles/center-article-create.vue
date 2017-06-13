@@ -34,6 +34,7 @@
     export default {
         data : function(){
             return {
+                token : '',
                 title : '',
                 thumb : '',
                 tag : '',
@@ -47,7 +48,25 @@
             submit : function(){
                 console.log(this.thumb)
                 console.log(this.title)
+                var t = this
+                var fn = function(){
+                    alert(t.token);
+                }
+                this.getToken(fn)
+            },
+            getToken : function(fn){
+                var t = this
+                axios.get('/getToken')
+                    .then(function(json){
+                        console.log(json)
+                        console.log(json.data.token)
+                        t.token = json.data.token
+                        fn()
+                    })
             }
+        },
+        complete : function(){
+            alert(321)
         }
     }
 </script>

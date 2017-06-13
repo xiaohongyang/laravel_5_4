@@ -169,6 +169,7 @@ Route::get('index', 'IndexController@index');
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/user/article/list', 'UserCenter\ArticleController@list')->name('user-article-list');
         Route::get('/user/article/create', 'UserCenter\ArticleController@create')->name('user-article-create');
+        Route::get('/user/article/create2', 'UserCenter\ArticleController@create2')->name('user-article-create');
         Route::post('/user/article/create', 'UserCenter\ArticleController@create')->name('user-article-create');
         Route::get('/user/article/edit', 'UserCenter\ArticleController@edit')->name('user-article-edit');
         Route::get('/user/article/del', 'UserCenter\ArticleController@del')->name('user-article-del');

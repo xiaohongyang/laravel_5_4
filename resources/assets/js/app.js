@@ -8,3 +8,6 @@
 require('./bootstrap');
 
 
+const vue = new Vue({
+    'el' : '#app'
+})

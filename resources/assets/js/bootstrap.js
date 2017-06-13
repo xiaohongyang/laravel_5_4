@@ -19,7 +19,8 @@ require('bootstrap-sass');
 
 window.Vue = require('vue');
 
-Vue.component('xhy-hello', require("./articles/article-list.vue"))
+Vue.component('xhy-hello', require("./articles/center-article-create.vue"))
+Vue.component('center-article-create', require("./articles/center-article-create.vue"))
 
 
 /**

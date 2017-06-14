@@ -19,8 +19,7 @@
             <span class="error"> </span>
         </div>
 
-        <script id="container" name="content" type="text/plain">
-        </script>
+        <Ueditor v-bind:value="contents" @on-contents-change="onContentsChange"></Ueditor>
 
         <div>
             <span>
@@ -34,7 +33,6 @@
 <script>
 
 
-
     export default {
         data : function(){
             return {
@@ -42,19 +40,12 @@
                 title : '',
                 thumb : '',
                 tag : '',
-                contents : '',
+                contents : '32132',
                 ue : {}
             }
         },
         mounted : function(){
-            var t = this
-            this.ue = UE.getEditor('container');
-            this.ue.ready(function() {
-                //this.ue.execCommand('serverparam', '_token', '321321');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
-            });
-            this.ue.addListener("selectionchange", function(){
-                t.contents = t.ue.getContent()
-            })
+
         },
         computed : {
             thumbSrc : function(){
@@ -63,7 +54,7 @@
         },
         watch : {
             contents : function(newValue, oldValue) {
-                console.log(newValue)
+                console.log("contents:" + newValue)
             }
         },
         methods : {
@@ -77,7 +68,6 @@
 
                 data.append('thumb', thumb);
                 data.append('directory', this.$config.directory.article_directory);
-
 
                 axios.post('/api/upload_image', data )
                     .then(function(json){
@@ -98,6 +88,10 @@
                     .then(function(json) {
                         console.log(json)
                     })
+            },
+            onContentsChange : function(val) {
+                this.contents = val
+                console.log(val)
             }
         },
         complete : function(){
@@ -107,7 +101,6 @@
             this.$freshToken()
         },
         created : function(){
-
         }
     }
 

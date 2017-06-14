@@ -19,10 +19,14 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+import Ueditor from './components/Ueditor.vue'
+Vue.use(Ueditor)
 import Auth2Plugin from './my-plugin/Auth2Plugin'
 Vue.use(Auth2Plugin)
 import ConfigPlugin from './my-plugin/ConfigPlugin'
 Vue.use(ConfigPlugin)
+
+Vue.component('Ueditor', require("./components/Ueditor.vue"))
 
 Vue.component('xhy-hello', require("./components/articles/center-article-create.vue"))
 Vue.component('center-article-create', require("./components/articles/center-article-create.vue"))

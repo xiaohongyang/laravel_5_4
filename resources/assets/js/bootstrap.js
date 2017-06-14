@@ -11,6 +11,7 @@ window.$ = window.jQuery = require('jquery');
 
 require('bootstrap-sass');
 
+
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -18,6 +19,10 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+import Auth2Plugin from './my-plugin/Auth2Plugin'
+Vue.use(Auth2Plugin)
+import ConfigPlugin from './my-plugin/ConfigPlugin'
+Vue.use(ConfigPlugin)
 
 Vue.component('xhy-hello', require("./components/articles/center-article-create.vue"))
 Vue.component('center-article-create', require("./components/articles/center-article-create.vue"))

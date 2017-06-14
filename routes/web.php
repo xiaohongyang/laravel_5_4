@@ -85,7 +85,9 @@ Route::get('passwordToken', function(Request $request){
     // echo $user->email;exit;
     $http = new GuzzleHttp\Client();
 
-    $response = $http->post(env('APP_URL') .'/oauth/token', [
+    $domain = env('APP_URL');
+    $domain = str_replace(':5000','', $domain);
+    $response = $http->post( $domain.'/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
             'client_id' => '5',

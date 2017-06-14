@@ -32,8 +32,10 @@ class ArticlesTest extends BaseUnit
         $url = route('articles.store');
         $response = $this->json('post', $url, $data, ['HTTP_Authorization' => 'Bearer ' . $this->getToken()]);
         $response->assertStatus(200);
-        $response->assertSeeText('"status":1', json_encode(json_decode($response->getContent())) );
-        return $response->getContent();
+        dd($response);
+//        $response->assertSeeText('"status":1', json_encode(json_decode($response->getContent())) );
+
+        //return $response->getContents();
     }
 
     public function testDestroy(){

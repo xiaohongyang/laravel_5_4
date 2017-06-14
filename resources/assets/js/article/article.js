@@ -17,10 +17,11 @@
         }
     }
 });*/
+/*
 
 var appList = new window.Vue({
     t : this,
-    el : '#layout-app',
+    el : '#app',
     data : {
         accessToken : '',
         articleList : {},
@@ -35,7 +36,6 @@ var appList = new window.Vue({
                 else
                     t.pagination.prevPage = 0
                 t.pagination.nextPage = currentPage + 1
-
                 //console.log(t.pagination)
             }
         }
@@ -106,4 +106,4 @@ var appList = new window.Vue({
 })
 
 
-  
+  */

@@ -70,6 +70,10 @@ class ArticleController extends BaseUserController
         return self::getXhyView(['article' => $article, 'form' => $form]);
     }
 
+    public function create2(Request $request) {
+        return self::getXhyView();
+    }
+
     /**
      * 文章编辑
      */

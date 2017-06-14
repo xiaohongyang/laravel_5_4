@@ -85,7 +85,9 @@ Route::get('passwordToken', function(Request $request){
     // echo $user->email;exit;
     $http = new GuzzleHttp\Client();
 
-    $response = $http->post(env('APP_URL') .'/oauth/token', [
+    $domain = env('APP_URL');
+    $domain = str_replace(':5000','', $domain);
+    $response = $http->post( $domain.'/oauth/token', [
         'form_params' => [
             'grant_type' => 'password',
             'client_id' => '5',
@@ -169,6 +171,7 @@ Route::get('index', 'IndexController@index');
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/user/article/list', 'UserCenter\ArticleController@list')->name('user-article-list');
         Route::get('/user/article/create', 'UserCenter\ArticleController@create')->name('user-article-create');
+        Route::get('/user/article/create2', 'UserCenter\ArticleController@create2')->name('user-article-create');
         Route::post('/user/article/create', 'UserCenter\ArticleController@create')->name('user-article-create');
         Route::get('/user/article/edit', 'UserCenter\ArticleController@edit')->name('user-article-edit');
         Route::get('/user/article/del', 'UserCenter\ArticleController@del')->name('user-article-del');

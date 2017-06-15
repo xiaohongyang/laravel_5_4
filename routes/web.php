@@ -230,8 +230,6 @@ Route::post('/create', function(\Illuminate\Http\Request $request){
     var_dump($result);
 });
 
-
-
 Route::get('queue_test', function(\Illuminate\Http\Request $request){
 
     $id = $request->get('id');
@@ -240,3 +238,13 @@ Route::get('queue_test', function(\Illuminate\Http\Request $request){
 
     \dispatch($job->onConnection('redis')->delay(\Carbon\Carbon::now()->addSeconds(30)));
 });
+
+
+#region 后台管理
+    Route::group([], function(){
+       Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+       Route::post('/admin/login', 'Admin\LoginController@login');
+       Route::get('/admin/dashboard', 'Admin\DashboardController@index');
+       Route::get('/admin/test', 'Admin\LoginController@test');
+    });
+#region

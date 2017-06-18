@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminCheckedMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -18,7 +19,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\AdminAuthMiddleware::class
+        //\App\Http\Middleware\AdminAuthMiddleware::class
     ];
 
     /**
@@ -58,6 +59,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'age' => \App\Http\Middleware\CheckAge::class,
-        'auth.admin' => \App\Http\Middleware\AdminAuthMiddleware::class
+        'auth.admin' => \App\Http\Middleware\AdminAuthMiddleware::class,
+        'auth.checkIsAdmin' => AdminCheckedMiddleware::class
     ];
 }

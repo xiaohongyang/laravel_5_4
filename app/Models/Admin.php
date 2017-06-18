@@ -8,13 +8,29 @@ use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
-    //
     use Notifiable;
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
-    protected  $fillable = ['name', 'email', 'password'];
 
-    protected  $hidden = ['password', 'remember_token'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 
-
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }

@@ -19,12 +19,13 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth.admin:admin', ['except' => ['showLoginForm']]);
+       // $this->middleware('auth.admin', ['except' => ['showLoginForm']]);
+        $this->middleware('auth.checkIsAdmin', ['except' => ['logout']]);
     }
 
     public function username()
     {
-        return 'name';
+        return 'email';
     }
 
     public function test(){
@@ -46,6 +47,8 @@ class LoginController extends Controller
     {
         return auth()->guard('admin');
     }
+
+
 
 
 }

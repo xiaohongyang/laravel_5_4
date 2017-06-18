@@ -244,7 +244,11 @@ Route::get('queue_test', function(\Illuminate\Http\Request $request){
     Route::group([], function(){
        Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
        Route::post('/admin/login', 'Admin\LoginController@login');
+       Route::get('/admin/logout', 'Admin\LoginController@logout');
+       Route::post('/admin/logout', 'Admin\LoginController@logout');
        Route::get('/admin/dashboard', 'Admin\DashboardController@index');
        Route::get('/admin/test', 'Admin\LoginController@test');
+       Route::get('/admin/dash', 'Admin\DashboardController@index')->name('admin.home');
+
     });
 #region

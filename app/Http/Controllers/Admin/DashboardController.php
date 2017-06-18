@@ -11,10 +11,10 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth.admin:admin');
+        $this->middleware('auth.admin');
     }
 
     public function index(){
-        dd('admin user name:' . auth('admin')->user()->name);
+        return view('admin.dashboard.index');
     }
 }

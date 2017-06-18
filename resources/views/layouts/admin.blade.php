@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{mix('/css/app.css')}}" rel="stylesheet">
+    <link href="{{mix('/css/site.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -92,8 +93,22 @@
 
         <div class="container">
 
+
             <div class="row">
-                <div class="col-sm-12" id="layout-app">
+                <div class="col-sm-3">
+                    <nav>
+                        <ul>
+                            <li class="list-style-none">
+                                <a href="#"  class="p-right-10 border-right-1px display-inline-block"> 文章管理 </a>
+                            </li>
+
+                            <li>
+                                <a href="#"> 文章管理 </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-sm-9" id="layout-app">
                     @yield('content')
                 </div>
             </div>

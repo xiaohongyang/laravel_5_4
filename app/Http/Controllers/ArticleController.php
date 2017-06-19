@@ -41,7 +41,7 @@ class ArticleController extends Controller
     public function create(Request $request){
         //print_r($request);
 
-        $rs = Article::createOrEdit(['title'=>'test', 'author'=>'xhy']);
+        $rs = Article::create(['title'=>'test', 'author'=>'xhy']);
 
         event(new ArticleReleased($rs));
         exit;
@@ -52,9 +52,6 @@ class ArticleController extends Controller
 
         exit;
 
-        $articleModel = new Article();
-        $rs = $articleModel->createOrEdit($request);
-        var_dump($rs);
     }
 
     public function firstOrCreate(Request $request){
@@ -124,7 +121,7 @@ class ArticleController extends Controller
 
         $validate->validate();
 
-        $this->article->createOrEdit($request);
+        $this->article->create($request);
         $request->session()->flash('msg', '添加成功');
         return back();
     }

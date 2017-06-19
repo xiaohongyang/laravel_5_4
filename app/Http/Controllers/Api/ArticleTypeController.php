@@ -16,7 +16,7 @@ class ArticleTypeController extends Controller
     public function index()
     {
         //
-        echo 33;
+        return ArticleTypeModel::all();
     }
 
     /**

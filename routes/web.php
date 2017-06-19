@@ -208,7 +208,7 @@ Route::get('/create', function(\Illuminate\Http\Request $request){
 
     $request->merge(['type_id'=>$typeItem->id]);
 
-    $result = $article->createOrEdit($request);
+    $result = $article->create($request);
     var_dump($result);
     print_r($request);
 });
@@ -231,7 +231,7 @@ Route::post('/create', function(\Illuminate\Http\Request $request){
     }
     $request->merge(['type_id'=>$typeItem->id]);
 
-    $result = $article->createOrEdit($request);
+    $result = $article->create($request);
     var_dump($result);exit;
 
     var_dump($result);

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Event;
 use App\Events\ArticleReleased;
 use League\Flysystem\Exception;
 
-class Article extends Model
+class Article extends BaseModel
 {
 
     protected $table = 'articles';
@@ -55,73 +55,82 @@ class Article extends Model
         'thumb' => ''
     ];
 
-    public function createOrEdit(Request $request) {
+    public function create($data) {
 
-        $result = $request->get('id') ? $this->_edit($request->get('id'), $request) : $this->_create($request);
-        return $result;
-    }
-    public function test(){}
+        $result = false;
+        $validator = \Validator::make($data, [
+            'title' => ['required'],
+            'author' => ['required'],
+            'user_id' => ['required'],
+            'type_id' => ['required']
+        ]);
 
+        if(!$validator->fails()){
 
-    private function _create(Request $request) {
+            $this->fill($data);
+            $result = $this->save();
+            if ($result) {
 
-        $article = new Article;
-        $this->_handle($article, $request);
-        $result = $article->save();
-
-        $articleDetail = new ArticleDetail();
-
-        if ($result) {
-            //保存detail关联表
-            $contents = $request->get('contents');
-            if (!is_null($contents)) {
-                $articleDetail->contents = $contents;
-                $article->detail() ->save($articleDetail);
-            }
-
-            //保存标签
-            $tags = $request->get('tags');
-            $tags = explode(',', $tags);
-            if (is_array($tags) && count($tags)) {
-
-                $relation = new ArticleTagRelationsModel();
-                foreach ($tags as $item) {
-                    $tag = ArticleTagsModel::firstOrCreate(['name' => $item]);
-                    $relation->create($article, $tag);
+                /*$articleDetail = new ArticleDetail();
+                //保存detail关联表
+                $contents = $data['contents'];
+                if (!is_null($contents)) {
+                    $articleDetail->contents = $contents;
+                    $this->detail() ->save($articleDetail);
                 }
-            }
+                //保存标签
+                $tags = $data['tags'];
+                $tags = explode(',', $tags);
+                if (is_array($tags) && count($tags)) {
 
-            $result = $article->id;
+                    $relation = new ArticleTagRelationsModel();
+                    foreach ($tags as $item) {
+                        $tag = ArticleTagsModel::firstOrCreate(['name' => $item]);
+                        $relation->create($this, $tag);
+                    }
+                }*/
+            }
+        } else {
+            $this->message = $validator->messages()->getMessageBag();
         }
-        return $result;
+        return $result ? $this->id : false;
     }
 
-    private function _edit($id, Request $request) {
-        $article = $this::find($id);
-        $this->_handle($article, $request);
-        $result = $article->save();
+
+
+    public function edit($data) {
+
+        $this->fill($data);
+        $result = $this->save();
 
         if ($result) {
 
             //详情
-            $detail = $article->detail;
-            $input = ['contents' => $request->get('contents')];
-            $result = $detail->fill($input)->save();
-            \Log::info('$detail->fill($request->all())->save() 结果:' . $request);
+            $detail = $this->detail;
 
-            if ($article->tags && count($article->tags)) {
-                foreach ($article->tags as $item) {
-                    $item->delete();
+            if(key_exists('contents', $data) && $data['contents'] != null){
+
+                $input = ['contents' => $data['contents']];
+                $result = $detail->fill($input)->save();
+                \Log::info('$detail->fill($request->all())->save() 结果:' . $data);
+
+                if ($this->tags && count($this->tags)) {
+                    foreach ($this->tags as $item) {
+                        $item->delete();
+                    }
                 }
             }
-            //保存标签
-            $tags = $request->get('tags');
-            $tags = explode(',', $tags);
-            if (is_array($tags) && count($tags)) {
-                $relation = new ArticleTagRelationsModel();
-                foreach ($tags as $item) {
-                    $tag = ArticleTagsModel::firstOrCreate(['name' => $item]);
-                    $relation->create($article, $tag);
+
+            if(key_exists('tags', $data) && is_null($data['tags'])) {
+                //保存标签
+                $tags = $data['tags'];
+                $tags = explode(',', $tags);
+                if (is_array($tags) && count($tags)) {
+                    $relation = new ArticleTagRelationsModel();
+                    foreach ($tags as $item) {
+                        $tag = ArticleTagsModel::firstOrCreate(['name' => $item]);
+                        $relation->create($this, $tag);
+                    }
                 }
             }
         }

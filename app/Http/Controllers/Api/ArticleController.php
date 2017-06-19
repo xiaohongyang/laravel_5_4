@@ -55,35 +55,34 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
 
         $result = [
             'status' => 0,
             'message' => [],
             'id' => 0
         ];
-
         try {
+                $data = [];
+                $data['title'] = $request->input('title');
+                $data['thumb'] = $request->input('thumb','');
+                $data['author'] = $request->input('author');
+                $data['user_id'] = \Auth::guard('api')->id() ;
+                $data['from_host'] = $request->input('from_host', '');
+                $data['type_id'] = $request->input('type_id');
 
-            $validator = \Validator::make($request->all(), [
-                'title' => ['required'],
-            ]);
-            if($validator->fails()){
-                $result['message'] = $validator->messages()->getMessageBag();
-            } else {
                 $article = new Article();
-                $request->merge(['user_id' => \Auth::guard('api')->id()]);
-                $rs = $article->createOrEdit($request);
+                $rs = $article->create($data);
                 $result['id'] = $rs;
                 $result['status'] = $rs ? 1 : 0;
-            }
+
+                if(!$rs)
+                    $result['message'] = $article->message;
         } catch (ValidationException $e) {
             $result['message'] = '';
             \Log::info($e->getMessage(). $e->getFile() . $e->getLine());
         } catch (Exception $e) {
             \Log::info($e->getMessage(). $e->getFile() . $e->getLine());
         }
-
         return $result;
     }
 
@@ -143,7 +142,36 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = [
+            'status' => 0,
+            'message' => [],
+            'id' => 0
+        ];
+        try {
+
+            $article = Article::find($id);
+
+            $data = [];
+            $data['title'] = $request->input('title');
+            $data['thumb'] = $request->input('thumb','');
+            $data['author'] = $request->input('author');
+            $data['user_id'] = \Auth::guard('api')->id() ;
+            $data['from_host'] = $request->input('from_host', '');
+            $data['type_id'] = $request->input('type_id', $article->type_id);
+
+            $rs = $article->edit($data);
+            $result['id'] = $rs;
+            $result['status'] = $rs ? 1 : 0;
+
+            if(!$rs)
+                $result['message'] = $article->message;
+        } catch (ValidationException $e) {
+            $result['message'] = '';
+            \Log::info($e->getMessage(). $e->getFile() . $e->getLine());
+        } catch (Exception $e) {
+            \Log::info($e->getMessage(). $e->getFile() . $e->getLine());
+        }
+        return $result;
     }
 
     /**

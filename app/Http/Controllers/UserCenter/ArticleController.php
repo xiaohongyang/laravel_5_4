@@ -41,7 +41,7 @@ class ArticleController extends BaseUserController
                 return redirect()->back()->withErrors($form->getErrors())->withInput();
             }
 
-            $rs = $article->createOrEdit($request);
+            $rs = $article->create($request);
             if ($rs) {
                 return redirect()->route('user-article-list');
             } else {

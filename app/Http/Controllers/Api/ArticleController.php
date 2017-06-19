@@ -118,6 +118,20 @@ class ArticleController extends Controller
     public function edit($id)
     {
         //
+        $result = [
+            'status' => 0,
+            'data' => [],
+            'message' => ''
+        ];
+        $model = Article::find($id);
+        if($model && $model->user_id == \Auth::guard('api')->id()) {
+            $result['status'] = 1;
+            $result['data'] = $model;
+        } else if($model){
+            $result['message'] = "您没有权限";
+        }
+
+        return $result;
     }
 
     /**

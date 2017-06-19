@@ -4,6 +4,7 @@
 Auth::routes();
 
 Route::resource('photos', 'PhotoController');
+Route::resource('article-types', 'ArticleTypeController');
 
 #region oAuth2.0 token
 Route::get('redirect', function (){
@@ -160,6 +161,12 @@ Route::get('index', 'IndexController@index');
     Route::get('/home', 'UserCenter\UserCenterController@index')->name('home')->middleware(['auth']);
 
 #endregion
+
+
+Route::get('md5', function (\Illuminate\Http\Request $request){
+
+    return md5($request->get('key'));
+});
 
 #region 前端文章展示
     Route::get('articles', 'ArticleController@index');

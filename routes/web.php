@@ -80,26 +80,46 @@ Route::get('refreshToken', function(){
     return json_decode( (string)$response->getBody() , true);
 });
 
-Route::get('passwordToken', function(Request $request){
+Route::get('passwordToken', function(\Illuminate\Http\Request $request){
 
-    $user = \App\User::where('email', 'JackXiao@qq.com')->first();
-    // echo $user->email;exit;
-    $http = new GuzzleHttp\Client();
+    $result = [
+        'status' => 0,
+        'message' => '获取失败',
+        'data' => []
+    ];
 
-    $domain = env('APP_URL');
-    $domain = str_replace(':5000','', $domain);
-    $response = $http->post( $domain.'/oauth/token', [
-        'form_params' => [
-            'grant_type' => 'password',
-            'client_id' => '5',
-            'client_secret' => 'nnAzR3Is4IsQTrSmn6Yk78uKDgiGjWQ0wQ8bGJDG',
-            'username' => $user->email,
-            'password' => '321321',
-            'scope' => '',
-        ],
+    $email = $request->get('email');
+    $password = $request->get('password');
+
+    $validator = \Validator::make($request->all(), [
+        'email' => ['required'],
+        'password' => ['required']
     ]);
+    if($validator->fails()) {
+        $result['message'] = $validator->messages()->getMessageBag();
+    } else {
+        $user = \App\User::where('email', $request->get('email'))->first();
+        // echo $user->email;exit;
+        $http = new GuzzleHttp\Client();
 
-    return json_decode( (string)$response->getBody(), true );
+        $domain = env('APP_URL');
+        $domain = str_replace(':5000','', $domain);
+        $response = $http->post( $domain.'/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'password',
+                'client_id' => '5',
+                'client_secret' => 'nnAzR3Is4IsQTrSmn6Yk78uKDgiGjWQ0wQ8bGJDG',
+                'username' => $user->email,
+                'password' => $request->get('password'),
+                'scope' => '',
+            ],
+        ]);
+
+        $result['data'] = json_decode( (string)$response->getBody(), true );
+        $result['status'] = 1;
+    }
+
+    return $result;
 });
 
 Route::get('implicitGrantToken', function(){

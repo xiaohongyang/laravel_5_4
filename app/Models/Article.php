@@ -71,24 +71,27 @@ class Article extends BaseModel
             $result = $this->save();
             if ($result) {
 
-                /*$articleDetail = new ArticleDetail();
+                $articleDetail = new ArticleDetail();
                 //保存detail关联表
-                $contents = $data['contents'];
-                if (!is_null($contents)) {
+
+                if (key_exists('contents',$data) && strlen(trim($data['contents']))) {
+                    $contents = $data['contents'];
                     $articleDetail->contents = $contents;
                     $this->detail() ->save($articleDetail);
                 }
                 //保存标签
-                $tags = $data['tags'];
-                $tags = explode(',', $tags);
-                if (is_array($tags) && count($tags)) {
+
+                if (key_exists('tags', $data) && strlen($data['tags']) ) {
+
+                    $tags = $data['tags'];
+                    $tags = explode(',', $tags);
 
                     $relation = new ArticleTagRelationsModel();
                     foreach ($tags as $item) {
                         $tag = ArticleTagsModel::firstOrCreate(['name' => $item]);
                         $relation->create($this, $tag);
                     }
-                }*/
+                }
             }
         } else {
             $this->message = $validator->messages()->getMessageBag();
@@ -223,7 +226,7 @@ class Article extends BaseModel
 
         //DB::enableQueryLog();
 
-        $items = self::orderBy('id', 'desc')
+        $items = self::with('detail')->has('detail')->orderBy('id', 'desc')
             ->offset($offset)
             ->limit($perPage)
             ->get();

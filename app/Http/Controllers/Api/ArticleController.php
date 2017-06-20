@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Events\ArticleDestroyed;
 use App\Models\Article;
+use App\Models\ArticleTagsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Event;
@@ -43,8 +44,16 @@ class ArticleController extends Controller
     public function create()
     {
         //
-
-        dd('create:');
+        return [
+            'title',
+            'thumb',
+            'author',
+            'user_id',
+            'from_host',
+            'type_id',
+            'contents',
+            'tags'
+        ];
     }
 
     /**
@@ -63,12 +72,14 @@ class ArticleController extends Controller
         ];
         try {
                 $data = [];
-                $data['title'] = $request->input('title');
-                $data['thumb'] = $request->input('thumb','');
-                $data['author'] = $request->input('author');
+                $data['title'] = $request->get('title');
+                $data['thumb'] = $request->get('thumb','');
+                $data['author'] = $request->get('author');
                 $data['user_id'] = \Auth::guard('api')->id() ;
-                $data['from_host'] = $request->input('from_host', '');
-                $data['type_id'] = $request->input('type_id');
+                $data['from_host'] = $request->get('from_host', '');
+                $data['type_id'] = $request->get('type_id');
+                $data['contents'] = $request->get('contents');
+                $data['tags'] = $request->get('tags');
 
                 $article = new Article();
                 $rs = $article->create($data);
@@ -92,14 +103,38 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
+
+        $type = $request->get('type');
+
+
         $result = ['status' => 0, 'message'=>'文章不存在'];
-        $article = Article::findOrFail($id);
-        $contents = $article->detail->contents;
-        unset($article->detail);
-        $article->contents = $contents;
+        $article = Article::with('detail', 'tags')->findOrFail($id);
+
+        switch($type){
+            case 1:
+//                if($article->detail) {
+//
+////                    $contents = $article->detail->contents;
+////                    unset($article->detail);
+////                    $article->contents = $contents;
+//                } else {
+//                    $article->contents = "";
+//                }
+
+                if($article->tags){
+
+                    foreach ($article->tags as &$tag){
+                        $tag->name = ArticleTagsModel::find($tag->tag_id)->name;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
         if( $article ) {
             $result['status'] = 1;
             $result['data'] = $article;
@@ -114,7 +149,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         //
         $result = [
@@ -122,8 +157,27 @@ class ArticleController extends Controller
             'data' => [],
             'message' => ''
         ];
+        $type = $request->get('type');
         $model = Article::find($id);
+
         if($model && $model->user_id == \Auth::guard('api')->id()) {
+
+            switch ($type) {
+                case 1:
+                    if ($model->detail) {
+                        $contents = $model->detail->contents;
+                        unset($model->detail);
+                        $model->contents = $contents;
+                    }
+                    if ($model->tags) {
+                        foreach ($model->tags as &$tags) {
+                            $tags->name = ArticleTagsModel::find($tags->tag_id);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
             $result['status'] = 1;
             $result['data'] = $model;
         } else if($model){
@@ -152,12 +206,12 @@ class ArticleController extends Controller
             $article = Article::find($id);
 
             $data = [];
-            $data['title'] = $request->input('title');
-            $data['thumb'] = $request->input('thumb','');
-            $data['author'] = $request->input('author');
+            $data['title'] = $request->get('title');
+            $data['thumb'] = $request->get('thumb','');
+            $data['author'] = $request->get('author');
             $data['user_id'] = \Auth::guard('api')->id() ;
-            $data['from_host'] = $request->input('from_host', '');
-            $data['type_id'] = $request->input('type_id', $article->type_id);
+            $data['from_host'] = $request->get('from_host', '');
+            $data['type_id'] = $request->get('type_id', $article->type_id);
 
             $rs = $article->edit($data);
             $result['id'] = $rs;

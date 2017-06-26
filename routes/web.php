@@ -104,19 +104,24 @@ Route::get('passwordToken', function(\Illuminate\Http\Request $request){
 
         $domain = env('APP_URL');
         $domain = str_replace(':5000','', $domain);
-        $response = $http->post( $domain.'/oauth/token', [
-            'form_params' => [
-                'grant_type' => 'password',
-                'client_id' => '5',
-                'client_secret' => 'nnAzR3Is4IsQTrSmn6Yk78uKDgiGjWQ0wQ8bGJDG',
-                'username' => $user->email,
-                'password' => $request->get('password'),
-                'scope' => '',
-            ],
-        ]);
 
-        $result['data'] = json_decode( (string)$response->getBody(), true );
-        $result['status'] = 1;
+        try {
+            $response = $http->post($domain . '/oauth/token', [
+                'form_params' => [
+                    'grant_type' => 'password',
+                    'client_id' => '5',
+                    'client_secret' => 'nnAzR3Is4IsQTrSmn6Yk78uKDgiGjWQ0wQ8bGJDG',
+                    'username' => $user->email,
+                    'password' => $request->get('password'),
+                    'scope' => '',
+                ],
+            ]);
+            $result['status'] = 1;
+            $result['data'] = json_decode( (string)$response->getBody(), true );
+        } catch (Exception $e) {
+            $result['data'] = "";
+            $result['message'] = "email或密码错误";
+        }
     }
 
     return $result;

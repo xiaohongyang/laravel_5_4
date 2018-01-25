@@ -72,13 +72,13 @@ class IndexController extends Controller
 //		dump($r);
 //		exit;
 
-//		$user = ['email' => '258082291@qq.com' , 'subject' => 'test'];
-//		\Mail::send('403',  $user , function($message) use (&$user)
-//		{
-//			$message->from($user['email'], 'name')
-//				->to('258082291@qq.com', 'contact us')
-//				->subject($user['subject']);
-//		});
+		$user = ['email' => '258082291@qq.com' , 'subject' => 'test'];
+		\Mail::send('403',  $user , function($message) use (&$user)
+		{
+			$message->from($user['email'], 'name')
+				->to('258082291@qq.com', 'contact us')
+				->subject($user['subject']);
+		});
 //
 //		exit;
 
